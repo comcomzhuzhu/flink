@@ -1,8 +1,6 @@
 package com.atguigu.wordcount
 
-import org.apache.flink.streaming.api.datastream.DataStreamSource
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment
-
+import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
 /**
   * @ObjectName Test
   * @Description TODO
@@ -12,11 +10,11 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment
   */
 object Test {
   def main(args: Array[String]): Unit = {
-    val env = StreamExecutionEnvironment.getExecutionEnvironment()
+    val env = StreamExecutionEnvironment.getExecutionEnvironment
+    val dataSS: DataStream[String] = env.readTextFile(" ")
 
-    val unit: DataStreamSource[String] = env.readTextFile("")
+    dataSS.flatMap(_.split(" ")).map((_,1)).keyBy(0).sum(1).print()
 
-    unit.map(x=>x.toInt).writeAsText("")
-    println()
+    env.execute()
   }
 }

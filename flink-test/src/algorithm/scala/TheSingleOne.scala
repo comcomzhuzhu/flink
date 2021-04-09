@@ -9,7 +9,7 @@ object TheSingleOne {
   }
 
 
-  def find(nums:Array[Int])={
+  def find(nums:Array[Int]): Int ={
     nums.reduce(_^_)
   }
 }

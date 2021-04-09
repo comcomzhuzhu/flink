@@ -9,14 +9,7 @@ import org.apache.flink.util.Collector;
 
 import java.util.Arrays;
 
-/**
- * @ClassName WordCountUNBOUND
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/8 17:08
- * @Version 1.0
- */
-public class WordCountUNBOUND {
+public class WordCountUNBOUNDED {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         DataStreamSource<String> lineDDS = env.socketTextStream("hadoop102", 9999);
