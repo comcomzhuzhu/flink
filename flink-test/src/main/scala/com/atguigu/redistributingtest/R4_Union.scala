@@ -16,7 +16,7 @@ object R4_Union {
     val ds2: DataStream[Int] = env.fromElements(100,200,300)
 
 
-    val ds1AndDs2: DataStream[Int] = ds1.union(ds2)
+    val ds1AndDs2: DataStream[Int] = ds1.union(ds2).setParallelism(2)
 
 
     ds1AndDs2.print()
