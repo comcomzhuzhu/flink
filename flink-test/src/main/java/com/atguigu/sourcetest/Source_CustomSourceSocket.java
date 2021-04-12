@@ -34,7 +34,6 @@ public class Source_CustomSourceSocket {
         env.execute();
     }
 
-
     public static class MySource implements SourceFunction<SensorReading> {
         private String host;
         private int port;
@@ -42,8 +41,7 @@ public class Source_CustomSourceSocket {
         private Socket socket;
         private AtomicBoolean is = new AtomicBoolean(true);
 
-
-        public MySource(String host, int port) {
+        MySource(String host, int port) {
             this.host = host;
             this.port = port;
         }
@@ -56,7 +54,7 @@ public class Source_CustomSourceSocket {
 
             String line;
             while (isRunning && (line = reader.readLine()) != null) {
-                System.out.println(line);
+                logger.info(line);
                 String[] split = line.split(",");
                 ctx.collect(new SensorReading(split[0], Long.valueOf(split[1]), Double.valueOf(split[2])));
             }

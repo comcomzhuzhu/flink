@@ -20,7 +20,7 @@ object Source_Socket {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
-    val source: MyScalaSource = MyScalaSource()
+    val source = new  MyScalaSource()
     val ds: DataStream[SensorReading] = env.addSource(source)
     ds.print()
     println("main:"+source.hashCode())
@@ -33,7 +33,7 @@ object Source_Socket {
   }
 }
 
-case class MyScalaSource() extends SourceFunction[SensorReading] {
+class MyScalaSource() extends SourceFunction[SensorReading] {
   @volatile var running = true
 //  var flag: AtomicBoolean = new AtomicBoolean(true)
 
