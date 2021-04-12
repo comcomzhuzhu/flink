@@ -9,11 +9,9 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
- * @ClassName T2_RollingAggregation
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/11 16:52
- * @Version 1.0
+ *
+   return KeyGroupRangeAssignment.assignKeyToParallelOperator
+   (key, maxParallelism, numberOfChannels);
  */
 public class T2_RollingAggregation {
     public static void main(String[] args) throws Exception {
@@ -28,15 +26,18 @@ public class T2_RollingAggregation {
 
         KeyedStream<SensorReading, Tuple> keyedStream = mapDS.keyBy("id");
 
+
+
+
         mapDS.keyBy(date->date.getId());
 
         KeyedStream<SensorReading, String> keyedStream1 = mapDS.keyBy(SensorReading::getId);
 
         SingleOutputStreamOperator<SensorReading> maxT = keyedStream.max("temperature");
-//      只改变了一个字段 其他的字段还是来自第一条数据 滚动聚合
+//       TODO 只改变了一个字段 其他的字段还是来自第一条数据 滚动聚合
         maxT.print();
 
-//        所有字段都变成了 最大值对应的 属性了
+//        TODO 所有字段都变成了 最大值对应的 属性了
         SingleOutputStreamOperator<SensorReading> temperature = keyedStream.maxBy("temperature");
 
         temperature.print();
