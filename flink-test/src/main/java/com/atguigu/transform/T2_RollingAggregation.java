@@ -27,8 +27,6 @@ public class T2_RollingAggregation {
         KeyedStream<SensorReading, Tuple> keyedStream = mapDS.keyBy("id");
 
 
-
-
         mapDS.keyBy(date->date.getId());
 
         KeyedStream<SensorReading, String> keyedStream1 = mapDS.keyBy(SensorReading::getId);
@@ -37,11 +35,13 @@ public class T2_RollingAggregation {
 //       TODO 只改变了一个字段 其他的字段还是来自第一条数据 滚动聚合
         maxT.print();
 
-//        TODO 所有字段都变成了 最大值对应的 属性了
+//        TODO 所有字段都变成了 最大值对应的 属性了  如果有相同的最大值的两条数据 默认使用first的其他属性
         SingleOutputStreamOperator<SensorReading> temperature = keyedStream.maxBy("temperature");
 
-        temperature.print();
+//       TODO   可以修改为有最大值相同的两条数据, 使用第二条数据的所有属性
+        SingleOutputStreamOperator<SensorReading> temperature2 = keyedStream.maxBy("temperature",false);
 
+        temperature.print();
 
         env.execute();
     }
