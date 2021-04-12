@@ -1,11 +1,10 @@
-package com.atguigu.apitest.sourcetest;
+package com.atguigu.sourcetest;
 
 import com.atguigu.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 /**

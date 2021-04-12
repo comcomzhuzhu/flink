@@ -1,4 +1,4 @@
-package com.atguigu.apitest.sourcetest;
+package com.atguigu.sourcetest;
 
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;

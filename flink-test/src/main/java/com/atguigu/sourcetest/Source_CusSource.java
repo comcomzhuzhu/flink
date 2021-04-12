@@ -1,4 +1,4 @@
-package com.atguigu.apitest.sourcetest;
+package com.atguigu.sourcetest;
 
 import com.atguigu.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;

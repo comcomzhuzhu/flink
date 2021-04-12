@@ -40,7 +40,7 @@ public class T7_RichFunction {
         env.execute();
     }
 
-    //    RichMapFunction 继承了抽象richFunction 实现了MapFunction
+//    RichMapFunction 继承了抽象richFunction 实现了MapFunction
 //    rich function  用继承
 //    平常写的普通版本mapFunction 直接实现mapFunction
     public static class MyMapper extends RichMapFunction<SensorReading, Tuple2<String, Integer>> {

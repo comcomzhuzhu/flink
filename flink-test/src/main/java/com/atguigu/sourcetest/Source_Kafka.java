@@ -1,4 +1,4 @@
-package com.atguigu.apitest.sourcetest;
+package com.atguigu.sourcetest;
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
