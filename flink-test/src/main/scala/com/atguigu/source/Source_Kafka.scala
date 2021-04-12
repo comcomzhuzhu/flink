@@ -21,13 +21,11 @@ object Source_Kafka {
     pro.setProperty("bootstrap.servers","hadoop102:9092")
     pro.setProperty("group.id","scala")
 
-
     val kafkaSource: DataStream[String] = env.addSource(new FlinkKafkaConsumer[String]("first",new SimpleStringSchema(),pro))
     kafkaSource.setParallelism(3)
 
 
     kafkaSource.print()
-
 
     env.execute()
   }

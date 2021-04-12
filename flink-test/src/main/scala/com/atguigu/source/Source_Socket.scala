@@ -17,6 +17,7 @@ import scala.collection.mutable
   * @Version 1.0
   */
 object Source_Socket {
+
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
