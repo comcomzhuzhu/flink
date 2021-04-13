@@ -22,9 +22,6 @@ public class W_AppAnalysis_By_Chanel {
         DataStreamSource<MarketingUserBehavior> source = env.addSource(new MarketSource());
 
 
-
-
-
         env.execute();
     }
 
