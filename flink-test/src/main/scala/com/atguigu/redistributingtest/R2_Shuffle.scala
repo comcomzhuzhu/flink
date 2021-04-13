@@ -18,7 +18,5 @@ object R2_Shuffle {
     ds.shuffle
 
     env.execute()
-
   }
-
 }

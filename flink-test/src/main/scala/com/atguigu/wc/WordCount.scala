@@ -12,7 +12,6 @@ import org.apache.flink.streaming.api.scala._
 object WordCount {
 
   def main(args: Array[String]): Unit = {
-    @volatile var bb = false
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     val lineDS: DataStream[String] = env.socketTextStream("hadoop102",9999)
     lineDS.flatMap(_.split(" "))

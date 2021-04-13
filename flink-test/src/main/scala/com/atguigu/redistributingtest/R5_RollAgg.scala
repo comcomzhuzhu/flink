@@ -26,7 +26,7 @@ object R5_RollAgg {
 //       scala没法传参
     keyedS.maxBy("vc")
 
-    
+
     env.execute()
   }
 
