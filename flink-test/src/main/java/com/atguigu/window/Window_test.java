@@ -18,6 +18,7 @@ public class Window_test {
 
         DataStreamSource<String> dss = env.socketTextStream("hadoop102", 1208);
 
+
         SingleOutputStreamOperator<SensorReading> caseClassDS = dss.map(new MapFunction<String, SensorReading>() {
             @Override
             public SensorReading map(String value) {
