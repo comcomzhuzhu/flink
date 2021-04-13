@@ -10,20 +10,19 @@ import org.apache.flink.streaming.api.scala._
 object Sink_JDBC {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-
     val textDS: DataStream[String] = env.readTextFile("flink-test/input/water.txt")
 
     val caseClassDS: DataStream[WaterSensor] = textDS.map((line: String) => {
       val strings: Array[String] = line.split(",")
       WaterSensor(strings(0), strings(1).toLong, strings(2).toInt)
     })
-    
+
     caseClassDS.addSink(SinkMysql())
     env.execute()
   }
 
   case class SinkMysql() extends RichSinkFunction[WaterSensor] {
-    var conn: Connection = null
+    var conn: Connection = _
     var pstm: PreparedStatement = _
 
     override def open(parameters: Configuration): Unit = {
