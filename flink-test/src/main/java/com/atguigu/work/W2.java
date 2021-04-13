@@ -11,17 +11,10 @@ import org.apache.flink.util.Collector;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @ClassName W2
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/13 16:02
- * @Version 1.0
- */
 public class W2 {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(3);
+        env.setParallelism(10);
         // 1. 读取Order流
         SingleOutputStreamOperator<OrderEvent> orderEventDS = env
                 .readTextFile("flink-test/input/OrderLog.csv")
@@ -34,7 +27,8 @@ public class W2 {
                             Long.valueOf(datas[3]));
 
                 });
-        // 2. 读取交易流
+
+        // 2. TODO 读取交易流
         SingleOutputStreamOperator<TxEvent> txDS = env
                 .readTextFile("flink-test/input/ReceiptLog.csv")
                 .map(line -> {
@@ -42,17 +36,19 @@ public class W2 {
                     return new TxEvent(datas[0], datas[1], Long.valueOf(datas[2]));
                 });
 
-        // 3. 两个流连接在一起
+        // 3. TODO 两个流连接在一起
         ConnectedStreams<OrderEvent, TxEvent> orderAndTx = orderEventDS.connect(txDS);
 
-        // 4. 因为不同的数据流到达的先后顺序不一致，所以需要匹配对账信息.  输出表示对账成功与否
+
+        // 4. TODO 因为不同的数据流到达的先后顺序不一致，所以需要匹配对账信息.  输出表示对账成功与否
         orderAndTx
+                .keyBy("txId", "txId")
+//        TODO 必须先keyBy   不然数据会发送到不同的task 一对一的流分开了匹配不了了
                 .process(new CoProcessFunction<OrderEvent, TxEvent, String>() {
                     // 存 txId -> OrderEvent
-                     Map<String, OrderEvent> orderMap = new HashMap<>();
+                      Map<String, OrderEvent> orderMap = new HashMap<>();
                     // 存储 txId -> TxEvent
-                     Map<String, TxEvent> txMap = new HashMap<>();
-
+                      Map<String, TxEvent> txMap = new HashMap<>();
                     @Override
                     public void processElement1(OrderEvent value, Context ctx, Collector<String> out) throws Exception {
                         // 获取交易信息

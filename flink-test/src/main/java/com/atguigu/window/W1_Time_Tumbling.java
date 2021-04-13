@@ -11,13 +11,6 @@ import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindo
 import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 
-/**
- * @ClassName W1_Time_Tumbling
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/12 23:14
- * @Version 1.0
- */
 public class W1_Time_Tumbling {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -25,19 +18,20 @@ public class W1_Time_Tumbling {
         DataStreamSource<String> dss = env.readTextFile("flink-test/input/sensor.txt");
 
         SingleOutputStreamOperator<SensorReading> caseDS = dss.map((MapFunction<String, SensorReading>) value -> {
-            String[] fileds = value.split(",");
-            return new SensorReading(fileds[0], Long.valueOf(fileds[1]), Double.valueOf(fileds[2]));
+            String[] fields = value.split(",");
+            return new SensorReading(fields[0], Long.valueOf(fields[1]), Double.valueOf(fields[2]));
         });
 
 //        window All 会将所有数据放入一个窗口
         caseDS.keyBy("id");
 
-//                .countWindow(10,5);  底层传入了一个全局窗口 所以就这么写
-//                .countWindow(10);
-//                .window(EventTimeSessionWindows.withGap(Time.milliseconds(1000)));
-//                .timeWindow(Time.seconds(15)); //底层是 of方法
-
-//                .window(TumblingProcessingTimeWindows.of(Time.seconds(10)));
+//TODO
+//              .countWindow(10,5); 滑动计数 底层传入了一个全局窗口 所以就这么写
+//  计数        .countWindow(10);  滚动计数
+//  会话        .window(EventTimeSessionWindows.withGap(Time.milliseconds(1000)));
+//              .timeWindow(Time.seconds(15));   底层是window的of方法
+//              .windowAll() 传入同一个实例
+//  滚动        .window(TumblingProcessingTimeWindows.of(Time.seconds(10)));
 
         env.execute();
     }
