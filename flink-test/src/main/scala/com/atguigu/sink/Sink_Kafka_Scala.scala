@@ -12,7 +12,7 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer
   * @Date 2021/4/13 9:26
   * @Version 1.0
   */
-object Sink_Kafka {
+object Sink_Kafka_Scala {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
@@ -30,8 +30,6 @@ object Sink_Kafka {
     lineDS.addSink(sink)
 
     env.execute()
-
-
   }
 
 }

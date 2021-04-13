@@ -8,14 +8,8 @@ import org.apache.http.HttpHost
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.client.Requests
 
-/**
-  * @ObjectName Sink_Es
-  * @Description TODO
-  * @Author Xing
-  * @Date 2021/4/13 10:24
-  * @Version 1.0
-  */
-object Sink_Es {
+object Sink_Es_Scala{
+//    TODO 无界流写入ES 需要设置 批次执行参数
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
@@ -24,24 +18,26 @@ object Sink_Es {
     val httpHosts = new java.util.ArrayList[HttpHost]
 
     httpHosts.add(new HttpHost("hadoop102", 9200))
+    httpHosts.add(new HttpHost("hadoop103", 9200))
+    httpHosts.add(new HttpHost("hadoop104", 9200))
 
-    new ElasticsearchSink.Builder[String](httpHosts, new ElasticsearchSinkFunction[String] {
-
+    val sinkBuilder = new ElasticsearchSink.Builder[String](httpHosts, new ElasticsearchSinkFunction[String]() {
       val json = new java.util.HashMap[String, String]
 
       override def process(t: String, runtimeContext: RuntimeContext, requestIndexer: RequestIndexer): Unit = {
         json.put("data", t)
 
-
         val rqst: IndexRequest = Requests.indexRequest
-          .index("4-13")
+          .index("es413")
           .`type`("_doc")
           .source(json)
-
         requestIndexer.add(rqst)
       }
     })
 
+    sinkBuilder.setBulkFlushMaxActions(1)
+
+    socketDS.addSink(sinkBuilder.build())
     socketDS.print()
     env.execute()
 
