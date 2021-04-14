@@ -29,7 +29,7 @@ public class Count_Window1 {
             return new SensorReading(fields[0], Long.valueOf(fields[1]), Double.valueOf(fields[2]));
         });
 
-//        TODO 开一个计数窗口 测试  统计十个数据的平均温度值
+//  TODO 开一个计数窗口 测试  统计十个数据的平均温度值
 
         caseDS.keyBy(new KeySelector<SensorReading, String>() {
             @Override
@@ -44,7 +44,7 @@ public class Count_Window1 {
                         return Tuple2.of(0.0, 0);
                     }
 
-//                        accumulator 就是之前的结果
+//              accumulator 就是之前的结果
                     @Override
                     public Tuple2<Double, Integer> add(SensorReading value, Tuple2<Double, Integer> accumulator) {
                         double f0 = accumulator.f0 + value.getTemperature();
