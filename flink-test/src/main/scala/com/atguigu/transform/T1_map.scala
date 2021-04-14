@@ -13,11 +13,9 @@ object T1_map {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
-    val sourceDS: DataStream[Int] = env.fromElements(1,2,3,4,5)
+    val sourceDS: DataStream[Int] = env.fromElements(1, 2, 3, 4, 5)
 
-    val mapDS: DataStream[Int] = sourceDS.map(_+1)
-
-    mapDS.print()
+    sourceDS.print()
 
     env.execute()
 
