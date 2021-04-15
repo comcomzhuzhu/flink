@@ -17,13 +17,12 @@ import org.apache.flink.util.OutputTag;
  *        TimeCharacteristic#EventTime}
  *TODO
  * 基于事件语义的窗口已经和现实的时间无关了只跟数据的时间戳有关
- *
  */
 
 public class WaterMarkTest {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(1);
+//        env.setParallelism(1);
 //        DataStreamSource<String> dss = env.readTextFile("flink-test/input/sensor.txt");
         //     public void setStreamTimeCharacteristic(TimeCharacteristic characteristic) {
 //		this.timeCharacteristic = Preconditions.checkNotNull(characteristic);

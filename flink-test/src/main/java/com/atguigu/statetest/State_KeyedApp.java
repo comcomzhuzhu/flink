@@ -2,8 +2,9 @@ package com.atguigu.statetest;
 
 import com.atguigu.apitest.beans.SensorReading;
 import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
-import org.apache.flink.api.common.functions.RichMapFunction;
+import org.apache.flink.api.common.functions.RichReduceFunction;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.api.java.tuple.Tuple3;
@@ -16,13 +17,6 @@ import org.apache.flink.util.Collector;
 import java.io.IOException;
 
 
-/**
- * @ClassName State_KeyedApp
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/15 14:06
- * @Version 1.0
- */
 public class State_KeyedApp {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -36,7 +30,10 @@ public class State_KeyedApp {
                 .flatMap(new TempChangeWarning(10.0));
 
 
-        warningDS.print();
+
+
+
+        warningDS.print("state temp");
         env.execute();
     }
 
