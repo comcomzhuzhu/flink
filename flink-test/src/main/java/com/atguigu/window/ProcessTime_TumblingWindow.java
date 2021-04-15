@@ -25,7 +25,7 @@ public class ProcessTime_TumblingWindow {
                 }
             }
         }).keyBy(t -> t.f0);
-//                offset  和 左闭右开 如果开窗口是days(1) 要偏移量-8
+//                offset  和 左闭右开是因为-1 如果开窗口是days(1)  要偏移量时区-8
         /**
          * Gets the largest timestamp that still belongs to this window.
          *

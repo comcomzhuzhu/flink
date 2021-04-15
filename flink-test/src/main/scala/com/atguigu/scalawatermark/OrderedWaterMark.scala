@@ -4,6 +4,7 @@ import java.time.Duration
 
 import com.atguigu.bean.WaterSensor
 import org.apache.flink.api.common.eventtime.{SerializableTimestampAssigner, WatermarkStrategy}
+import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala._
 
 /**
@@ -17,6 +18,7 @@ object OrderedWaterMark {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     val socketDS: DataStream[String] = env.socketTextStream("hadoop102",8544)
+    env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
     val caseClassDS: DataStream[WaterSensor] = socketDS.map(line => {
       val strings: Array[String] = line.split(",")
       WaterSensor(strings(0), strings(1).toLong, strings(2).toInt)

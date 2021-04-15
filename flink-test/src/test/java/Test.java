@@ -12,7 +12,7 @@ public class Test {
         test(myTest);
     }
 
-    public static void test(Runnable r){
+    private static void test(Runnable r){
         r.run();
     }
 }

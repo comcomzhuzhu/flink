@@ -14,11 +14,10 @@ object Province_Ads_Click {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     val dataDS: DataStream[String] = env.readTextFile("flink-test/input/AdClickLog.csv")
 
-    dataDS.map(line=>{
+    dataDS.map((line: String) => {
       val strings: Array[String] = line.split(",")
-      (strings(2)+"-"+strings(1),1L)
+      (strings(2) + "-" + strings(1), 1L)
     }).keyBy(0).sum(1).print()
-
 
 
     env.execute()

@@ -20,7 +20,6 @@ object Work2 {
     socketDS.flatMap(_.split(",")).keyBy(t => t)
       .process(new KeyedProcessFunction[String, String, String] {
         var set = new mutable.HashSet[String]()
-
         override def processElement(value: String, ctx: KeyedProcessFunction[String, String, String]#Context, out: Collector[String]): Unit = {
           if (!set.contains(value))
             out.collect(value)

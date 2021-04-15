@@ -25,7 +25,6 @@ object Process_T1 {
     }
 
 
-
     val proDS: DataStream[String] = caseClassDS.process((value: WaterSensor, ctx: ProcessFunction[WaterSensor, String]#Context, out: Collector[String]) => {
       out.collect(value.id + "-" + value.ts)
     })

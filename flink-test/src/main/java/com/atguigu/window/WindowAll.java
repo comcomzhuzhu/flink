@@ -10,12 +10,12 @@ import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTime
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
-/**
- * @ClassName WindowAll
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/14 16:47
- * @Version 1.0
+/**TODO
+ * 	在keyed streams上使用窗口, 窗口计算被并行的运用在多个task上,
+ * 	可以认为每个分组都有自己单独窗口. 正如前面的代码所示.
+ * 	在non-keyed stream上使用窗口, 流的并行度只能是1,
+ * 	所有的窗口逻辑只能在一个单独的task上执行.
+ * 	需要注意的是: 非key分区的流, 即使把并行度设置为大于1 的数, 窗口也只能在某个分区上使用
  */
 public class WindowAll {
     public static void main(String[] args) throws Exception {

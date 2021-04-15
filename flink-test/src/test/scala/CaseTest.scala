@@ -12,7 +12,6 @@ object CaseTest {
     println(q.hashCode())
     println(q1.hashCode())
   }
-
 }
 
 class CaseTestQ()

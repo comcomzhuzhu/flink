@@ -16,14 +16,14 @@ object R1_Reduce {
     val socketDS: DataStream[String] = env.socketTextStream("hadoop102",9944)
 
     val caseClassDS: DataStream[WaterSensor] = socketDS.map {
-      line => {
+      line: String => {
         val strings: Array[String] = line.split(" ")
         WaterSensor(strings(0), strings(1).toLong, strings(2).toInt)
       }
     }
 
-    caseClassDS.keyBy(_.id)
-        .reduce((t1,t2)=>{
+    caseClassDS.keyBy((_: WaterSensor).id)
+        .reduce((t1: WaterSensor, t2: WaterSensor)=>{
           WaterSensor(t1.id, System.currentTimeMillis(),t1.vc+t2.vc)
         }).print()
 
