@@ -35,8 +35,6 @@ public class Global_Window {
         keyedStream.window(GlobalWindows.create())
                 .trigger(new MyTrigger()).sum(1).print();
 
-
-
         env.execute();
     }
 

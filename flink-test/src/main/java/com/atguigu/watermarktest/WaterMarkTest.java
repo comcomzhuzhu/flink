@@ -17,6 +17,7 @@ import org.apache.flink.util.OutputTag;
  *        TimeCharacteristic#EventTime}
  *TODO
  * 基于事件语义的窗口已经和现实的时间无关了只跟数据的时间戳有关
+ * 必须等上游的所有分区的watermark 的最小值都 达到了 窗口关闭的条件才会触发计算
  */
 
 public class WaterMarkTest {
