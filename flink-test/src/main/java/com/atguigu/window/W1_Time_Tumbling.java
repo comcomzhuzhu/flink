@@ -5,10 +5,7 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.windowing.assigners.EventTimeSessionWindows;
-import org.apache.flink.streaming.api.windowing.assigners.SessionWindowTimeGapExtractor;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.*;
 import org.apache.flink.streaming.api.windowing.time.Time;
 
 public class W1_Time_Tumbling {
@@ -23,7 +20,10 @@ public class W1_Time_Tumbling {
         });
 
 //        window All 会将所有数据放入一个窗口
-        caseDS.keyBy("id");
+        caseDS.keyBy("id")
+        .window(SlidingProcessingTimeWindows.of(Time.seconds(50), Time.seconds(5)))
+        .sum("temperature").print("a");
+
 
 //TODO
 //              .countWindow(10,5); 滑动计数 底层传入了一个全局窗口 所以就这么写

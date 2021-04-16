@@ -1,37 +1,29 @@
 package com.atguigu.watermarktest;
 
-
-
 import com.atguigu.apitest.beans.WaterSensor;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
-import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
-import org.apache.flink.streaming.api.datastream.WindowedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.windowing.assigners.SlidingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.EventTimeSessionWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
-import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
-import org.apache.flink.util.Collector;
 
 import java.time.Duration;
 
 /**
- * @ClassName WindowET_SW_OOOrdernes
+ * @ClassName WindowET_SW
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/16 15:19
+ * @Date 2021/4/16 20:37
  * @Version 1.0
  */
-public class WindowET_SW_OOOrderness {
+public class WindowET_SW {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
         env.setParallelism(1);
-
         DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 3333);
 
 
@@ -44,23 +36,23 @@ public class WindowET_SW_OOOrderness {
         });
 
         SingleOutputStreamOperator<WaterSensor> andWatermarks = dataDS.assignTimestampsAndWatermarks(WatermarkStrategy.<WaterSensor>forBoundedOutOfOrderness(
-                Duration.ofSeconds(2)
+                Duration.ofMillis(2)
         ).withTimestampAssigner(new SerializableTimestampAssigner<WaterSensor>() {
             @Override
             public long extractTimestamp(WaterSensor element, long recordTimestamp) {
-                return element.getTs() * 1000L;
+                return element.getTs();
             }
         }));
 
         KeyedStream<WaterSensor, String> keyedStream = andWatermarks.keyBy(WaterSensor::getId);
 
+        keyedStream.window(EventTimeSessionWindows.withGap(Time.milliseconds(5)))
+                .sum("vc")
+                .print("s");
 
-        WindowedStream<WaterSensor, String, TimeWindow> windowDS = keyedStream.window(SlidingEventTimeWindows.of(Time.seconds(6), Time.seconds(2)));
 
-        windowDS.sum("vc").print("result");
 
 
         env.execute();
     }
-
 }

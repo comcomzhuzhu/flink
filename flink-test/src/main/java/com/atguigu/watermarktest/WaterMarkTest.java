@@ -56,7 +56,7 @@ public class WaterMarkTest {
         OutputTag<SensorReading> outputTag = new OutputTag<SensorReading>("late"){};
 //      基于事件时间的开窗聚合  统计15S内温度的最小值
         SingleOutputStreamOperator<SensorReading> re0DS = caseDS.keyBy(SensorReading::getId)
-                .window(TumblingEventTimeWindows.of(Time.seconds(15)))
+                .window(TumblingEventTimeWindows.of(Time.seconds(5)))
                 .allowedLateness(Time.minutes(1))
                 .sideOutputLateData(outputTag)
 
