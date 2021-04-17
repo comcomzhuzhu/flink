@@ -51,7 +51,7 @@ public class Work3 {
                 })
                 .process(new ProcessWindowFunction<WaterSensor, Tuple2<String, Long>, String, TimeWindow>() {
                     @Override
-                    public void process(String s, Context context, Iterable<WaterSensor> elements, Collector<Tuple2<String, Long>> out) throws Exception {
+                    public void process(String s, Context context, Iterable<WaterSensor> elements, Collector<Tuple2<String, Long>> out) {
                         ArrayList<WaterSensor> list = Lists.newArrayList(elements.iterator());
                         long size = list.size();
                         out.collect(Tuple2.of(s, size));
@@ -64,6 +64,10 @@ public class Work3 {
 //      7-9之间 如果还来了-25到5之间的数据 会来一条更新一次之前的计算结果
 //       数据所属的所有窗口都关闭之后
 //         进入侧输出流
+
+
+//        在第一个窗口关闭之后 再来一个属于第一个窗口的数据
+//        对这个计算窗口而言会丢一部分数据   也不会进侧输出流
         env.execute();
     }
 }

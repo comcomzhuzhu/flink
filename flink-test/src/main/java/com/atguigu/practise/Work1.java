@@ -1,6 +1,5 @@
 package com.atguigu.practise;
 
-import com.sun.org.glassfish.gmbal.Description;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
