@@ -78,6 +78,7 @@ public class State_OperatorState_1 {
         public void snapshotState(FunctionSnapshotContext context) throws Exception {
             state.clear();
             state.add(count);
+            state.add(count+1);
         }
 
         @Override

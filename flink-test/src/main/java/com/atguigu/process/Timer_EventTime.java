@@ -13,13 +13,13 @@ import org.apache.flink.util.Collector;
 import java.time.Duration;
 
 /**
- * @ClassName Timer_ProcessingTime
+ * @ClassName Timer_EventTime
  * @Description TODO
  * @Author Xing
  * @Date 2021/4/17 12:40
  * @Version 1.0
  */
-public class Timer_ProcessingTime {
+public class Timer_EventTime {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         SingleOutputStreamOperator<WaterSensor> dataDS = env.socketTextStream("hadoop102", 7777)
@@ -39,16 +39,20 @@ public class Timer_ProcessingTime {
                     }
                 }))
                 .keyBy(WaterSensor::getId)
-                .process(new KeyedProcessFunction<String, WaterSensor, String>() {
+                .process(new KeyedProcessFunction<String, WaterSensor, WaterSensor>() {
                     @Override
-                    public void processElement(WaterSensor value, Context ctx, Collector<String> out) {
+                    public void processElement(WaterSensor value, Context ctx, Collector<WaterSensor> out) {
+                        out.collect(value);
+
                         TimerService timerService = ctx.timerService();
-//                      此处获得了 周期型 生成的上一个数据的时间戳 -延迟时间生成的watermark
+//                      此处获得了 周期型 只能获取到上一个数据生成的watermark
+//                      生成的上一个数据的时间戳 -延迟时间生成的watermark
                         long watermark = timerService.currentWatermark();
+
                         timerService.registerEventTimeTimer(watermark + 5000L - 1);
                     }
                     @Override
-                    public void onTimer(long timestamp, OnTimerContext ctx, Collector<String> out) throws Exception {
+                    public void onTimer(long timestamp, OnTimerContext ctx, Collector<WaterSensor> out) throws Exception {
                         System.out.println("定时器触发");
                     }
                 });

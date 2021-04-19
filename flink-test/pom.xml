@@ -18,7 +18,12 @@
         <artifactId>flink-connector-kafka_2.12</artifactId>
         <version>1.12.2</version>
     </dependency>
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-compress</artifactId>
+        <version>1.18</version>
+    </dependency>
 
-    </dependencies>
+</dependencies>
 
 </project>

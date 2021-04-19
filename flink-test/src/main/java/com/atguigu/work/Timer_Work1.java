@@ -33,7 +33,7 @@ public class Timer_Work1 {
 
             @Override
             public void processElement(WaterSensor value, Context ctx, Collector<WaterSensor> out) throws Exception {
-
+                out.collect(value);
                 TimerService timerService = ctx.timerService();
                 Double vc = value.getVc();
 
@@ -63,7 +63,7 @@ public class Timer_Work1 {
                     lastVc = value.getVc();
                 }
 
-                out.collect(value);
+
             }
 
             @Override

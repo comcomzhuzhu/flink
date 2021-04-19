@@ -23,7 +23,9 @@ public class Source_Kafka {
         pro.setProperty("bootstrap.servers", "hadoop102:9092,hadoop103:9092,hadoop104:9092");
         pro.setProperty("group.id", "test1");
         pro.setProperty("auto.offset.reset", "latest");
-        DataStreamSource<String> kafkaDSS = env.addSource(new FlinkKafkaConsumer<>("first", new SimpleStringSchema(), pro));
+        FlinkKafkaConsumer<String> first = new FlinkKafkaConsumer<>("first", new SimpleStringSchema(), pro);
+        first.setStartFromGroupOffsets();
+        DataStreamSource<String> kafkaDSS = env.addSource(first);
 
 
         kafkaDSS.print();
