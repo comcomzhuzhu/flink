@@ -32,15 +32,14 @@ public class MapState_Case {
 
 
         caseClassDS.keyBy(WaterSensor::getId)
-
 //                实现每个传感器传输的水位线值进行去重
                 .process(new KeyedProcessFunction<String, WaterSensor, WaterSensor>() {
                     private MapState<Double, String> mapState;
 
                     @Override
-                    public void open(Configuration parameters) throws Exception {
+                    public void open(Configuration parameters) {
                         mapState = getRuntimeContext().getMapState(
-                                new MapStateDescriptor<Double, String>(
+                                new MapStateDescriptor<>(
                                         "map"
                                         , Double.class, String.class)
                         );
@@ -48,9 +47,10 @@ public class MapState_Case {
 
                     @Override
                     public void processElement(WaterSensor value, Context ctx, Collector<WaterSensor> out) throws Exception {
+
 //      TODO        判断当前水位线是否在状态已存在
                         if (!mapState.contains(value.getVc())) {
-                            mapState.put(value.getVc(), "");
+                            mapState.put(value.getVc(), null);
                             out.collect(value);
                         }
                     }

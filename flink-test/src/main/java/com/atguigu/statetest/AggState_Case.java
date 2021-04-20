@@ -39,6 +39,7 @@ public class AggState_Case {
         caseClassDS.keyBy(WaterSensor::getId)
 //                每个传感器的平均水位
                 .process(new KeyedProcessFunction<String, WaterSensor, Tuple2<String, Double>>() {
+
                     private AggregatingState<Double, Double> aggregatingState;
 
                     @Override
@@ -67,13 +68,13 @@ public class AggState_Case {
                                                 return Tuple2.of(a.f0 + b.f0, a.f1 + b.f1);
                                             }
                                         }
-                                        , TypeInformation.of(new TypeHint<Tuple2<Double, Integer>>() {
-                                })));
+                                        , TypeInformation.of(new TypeHint<Tuple2<Double, Integer>>() {})));
                     }
-
                     @Override
-                    public void processElement(WaterSensor value, Context ctx, Collector<Tuple2<String, Double>> out) {
+                    public void processElement(WaterSensor value, Context ctx, Collector<Tuple2<String, Double>> out) throws Exception {
+                        aggregatingState.add(value.getVc());
 
+                        out.collect(Tuple2.of(value.getId(),aggregatingState.get()));
 
                     }
                 })

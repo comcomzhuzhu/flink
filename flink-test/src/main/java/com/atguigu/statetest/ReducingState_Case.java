@@ -25,6 +25,7 @@ public class ReducingState_Case {
             }
         });
 
+//        累加水位线
         caseClassDS.keyBy(WaterSensor::getId)
                 .process(new KeyedProcessFunction<String, WaterSensor, Tuple2<String, Double>>() {
                     //                   定义状态

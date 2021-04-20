@@ -1,8 +1,8 @@
 package com.atguigu.watermarktest;
 
 
-
 import com.atguigu.apitest.beans.WaterSensor;
+import org.apache.commons.compress.utils.Lists;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.FlatMapFunction;
@@ -12,6 +12,7 @@ import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.datastream.WindowedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.SlidingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
@@ -34,7 +35,6 @@ public class WindowET_SW_OOOrderness {
 
         DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 3333);
 
-
         SingleOutputStreamOperator<WaterSensor> dataDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override
             public WaterSensor map(String value) throws Exception {
@@ -55,9 +55,18 @@ public class WindowET_SW_OOOrderness {
         KeyedStream<WaterSensor, String> keyedStream = andWatermarks.keyBy(WaterSensor::getId);
 
 
-        WindowedStream<WaterSensor, String, TimeWindow> windowDS = keyedStream.window(SlidingEventTimeWindows.of(Time.seconds(6), Time.seconds(2)));
+        keyedStream.window(SlidingEventTimeWindows.of(Time.seconds(6), Time.seconds(2)))
+                .allowedLateness(Time.seconds(2))
 
-        windowDS.sum("vc").print("result");
+                .process(new ProcessWindowFunction<WaterSensor, Integer, String, TimeWindow>() {
+                    @Override
+                    public void process(String key, Context context, Iterable<WaterSensor> elements, Collector<Integer> out) throws Exception {
+                        System.out.println(context.window().maxTimestamp());
+                        System.out.println(context.window().getStart() + "-" + context.window().getEnd());
+                        int size = Lists.newArrayList(elements.iterator()).size();
+                        out.collect(size);
+                    }
+                }).print().setParallelism(1);
 
 
         env.execute();

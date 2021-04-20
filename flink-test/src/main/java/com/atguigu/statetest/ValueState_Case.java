@@ -50,10 +50,7 @@ public class ValueState_Case {
                         out.collect(value);
                     }
                 });
-
-
 //        侧输出流获取
-
         reDS.print("re");
         reDS.getSideOutput(outputTag).print("side");
 

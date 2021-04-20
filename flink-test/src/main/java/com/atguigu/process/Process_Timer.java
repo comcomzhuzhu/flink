@@ -31,7 +31,6 @@ public class Process_Timer {
                     public void processElement(WaterSensor value, Context ctx, Collector<WaterSensor> out) {
                         out.collect(value);
                         TimerService timerService = ctx.timerService();
-
 //                        UnsupportedOperationException: Setting timers is only supported on a keyed streams.
                         timerService.registerProcessingTimeTimer(timerService.currentProcessingTime() + 5000L);
                     }

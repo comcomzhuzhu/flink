@@ -1,6 +1,6 @@
 package com.atguigu.statescala
 
-import org.apache.flink.api.common.state.{MapStateDescriptor, ReadOnlyBroadcastState}
+import org.apache.flink.api.common.state.{BroadcastState, MapStateDescriptor, ReadOnlyBroadcastState}
 import org.apache.flink.api.common.typeinfo.{TypeHint, TypeInformation}
 import org.apache.flink.streaming.api.datastream.BroadcastStream
 import org.apache.flink.streaming.api.functions.co.BroadcastProcessFunction
@@ -29,7 +29,7 @@ object State_OpBroadCast {
     )
 
     val broDS: BroadcastStream[String] = channelDS.broadcast(mapDes)
-//       将两个流进行连接
+    //       将两个流进行连接
     val connDS: BroadcastConnectedStream[String, String] = socketDS.connect(broDS)
 
     connDS.process(new BroadcastProcessFunction[String, String, String] {
@@ -38,11 +38,11 @@ object State_OpBroadCast {
         val readBroState: ReadOnlyBroadcastState[String, String] = ctx.getBroadcastState(mapDes)
 
         val channel: String = readBroState.get("channel")
-//       根据广播状态处理数据
+        //       根据广播状态处理数据
         if ("1".equals(channel)) {
-
+          out.collect("1" + ":" + value)
         } else {
-
+          out.collect("other" + ":" + value)
         }
 
 
@@ -50,6 +50,7 @@ object State_OpBroadCast {
 
       override def processBroadcastElement(value: String, ctx: BroadcastProcessFunction[String, String, String]#Context, out: Collector[String]): Unit = {
         //        获取广播状态 并存入数据
+        val braState: BroadcastState[String, String] = ctx.getBroadcastState(mapDes)
         ctx.getBroadcastState(mapDes).put("channel", value)
 
       }
@@ -58,5 +59,4 @@ object State_OpBroadCast {
 
     env.execute()
   }
-
 }
