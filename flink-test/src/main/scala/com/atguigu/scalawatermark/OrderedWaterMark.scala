@@ -13,7 +13,7 @@ object OrderedWaterMark {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     val socketDS: DataStream[String] = env.socketTextStream("hadoop102",8544)
 //    env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
-    val caseClassDS: DataStream[WaterSensor] = socketDS.map(line => {
+    val caseClassDS: DataStream[WaterSensor] = socketDS.map((line: String) => {
       val strings: Array[String] = line.split(",")
       WaterSensor(strings(0), strings(1).toLong, strings(2).toInt)
     })
@@ -28,7 +28,7 @@ object OrderedWaterMark {
         }
       }))
 
-    val keyedDS: KeyedStream[WaterSensor, String] = waterMDS.keyBy(_.id)
+    val keyedDS: KeyedStream[WaterSensor, String] = waterMDS.keyBy((_: WaterSensor).id)
     keyedDS.window(TumblingEventTimeWindows.of(Time.seconds(5)))
         .allowedLateness(Time.seconds(2))
         .sideOutputLateData(new OutputTag[WaterSensor]("late"){})
