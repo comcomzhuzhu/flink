@@ -1,7 +1,6 @@
 package com.atguigu.work;
 
 import com.atguigu.apitest.beans.WaterSensor;
-import com.atguigu.statetest.WordCount_Work2;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -20,7 +19,6 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.aggregation.AggregationFunction;
 import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.SlidingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
@@ -87,23 +85,32 @@ public class WordCount_W3 {
                         );
                     }
 
+                    private boolean isLate;
                     @Override
-                    public void process(Context context, Iterable<Tuple2<String, Integer>> elements, Collector<Tuple2<String, Integer>> out) throws Exception {
+                    public void process(Context context, Iterable<Tuple2<String, Integer>> elements, Collector<Tuple2<String, Integer>> out) {
 
-                        System.out.println(Lists.newArrayList(elements.iterator()));
 
-                        System.out.println(context.window().getStart()+" "+context.window().getEnd());
+                        System.out.println(context.window().getStart() + " " + context.window().getEnd());
 
                         System.out.println(context.window().maxTimestamp());
 
-                        for (Tuple2<String, Integer> element : elements) {
-                            if (hashMap.containsKey(element.f0)) {
-                                hashMap.put(element.f0, element.f1 > hashMap.get(element.f0) ? element.f1 : hashMap.get(element.f0));
+                        if (isLate) {
+                            ArrayList<Tuple2<String, Integer>> eList = Lists.newArrayList(elements.iterator());
+                            Tuple2<String, Integer> tuple2 = eList.get(eList.size() - 1);
+                            if (hashMap.containsKey(tuple2.f0)) {
+                                hashMap.put(tuple2.f0, hashMap.get(tuple2.f0) + 1);
                             } else {
-                                hashMap.put(element.f0, element.f1);
+                                hashMap.put(tuple2.f0, 1);
+                            }
+                        } else {
+                            for (Tuple2<String, Integer> element : elements) {
+                                if (hashMap.containsKey(element.f0)) {
+                                    hashMap.put(element.f0, element.f1 > hashMap.get(element.f0) ? element.f1 : hashMap.get(element.f0));
+                                } else {
+                                    hashMap.put(element.f0, element.f1);
+                                }
                             }
                         }
-
                         ArrayList<Map.Entry<String, Integer>> entries = Lists.newArrayList(hashMap.entrySet().iterator());
 
                         entries.sort(((o1, o2) -> -o1.getValue().compareTo(o2.getValue())));
@@ -112,6 +119,8 @@ public class WordCount_W3 {
                             Map.Entry<String, Integer> entry = entries.get(i);
                             out.collect(Tuple2.of(entry.getKey(), entry.getValue()));
                         }
+
+                        isLate = true;
                     }
                 })
                 .print("word").setParallelism(1);
@@ -162,11 +171,6 @@ public class WordCount_W3 {
             return null;
         }
     }
-
-
-
-
-
 
 
     public static class MyRichFlatMapTopNFuncc extends RichFlatMapFunction<WaterSensor, Tuple2<String, Integer>> {

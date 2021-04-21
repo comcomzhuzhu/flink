@@ -33,7 +33,7 @@ public class CountWindowTest {
                 .sum(1)
                 .print("tumbling");
 
-//
+
         keyedStream.countWindow(5,2)
                 .sum(1)
                 .print("sliding");
