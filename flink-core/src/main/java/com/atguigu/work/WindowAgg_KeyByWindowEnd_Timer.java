@@ -105,7 +105,7 @@ public class WindowAgg_KeyByWindowEnd_Timer {
             mapState = getRuntimeContext().getMapState(new MapStateDescriptor<>("map", String.class, Integer.class));
         }
 
-        public MyTopNKeyedProFunction(int topN, int allowedlate) {
+        MyTopNKeyedProFunction(int topN, int allowedlate) {
             this.topN = topN;
             this.allowedLate = allowedlate;
         }

@@ -1,28 +1,26 @@
-package flinksql_D;
+package com.atguigu.timepro;
 
 import com.atguigu.apitest.beans.WaterSensor;
 import org.apache.flink.api.common.functions.MapFunction;
-import org.apache.flink.api.java.tuple.Tuple2;
-import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
-import org.apache.flink.types.Row;
+
+import static org.apache.flink.table.api.Expressions.$;
 
 /**
- * @ClassName DS_Agg
+ * @ClassName Stream2Table
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/21 15:38
+ * @Date 2021/4/21 19:52
  * @Version 1.0
  */
-public class DS_Agg {
+public class Stream2Table {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
-
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
         DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8888);
 
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
@@ -33,12 +31,15 @@ public class DS_Agg {
             }
         });
 
-        tableEnvironment.createTemporaryView("sensor", caseClassDS);
-        Table table = tableEnvironment.sqlQuery("select id,count(id) from sensor group by id");
+        Table table = tableEnv.fromDataStream(caseClassDS,
+                $("id"),
+                $("ts"),
+                $("vc"),
+                $("pt").proctime());
 
-        DataStream<Tuple2<Boolean, Row>> resultDS = tableEnvironment.toRetractStream(table, Row.class);
+        table.printSchema();
 
-        resultDS.print();
+
         env.execute();
     }
 }
