@@ -17,7 +17,6 @@ public class DDL_kafka {
 
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
 
-
         tableEnvironment.executeSql("create table source " +
                 "(id String,ts bigint,vc double)  with (" +
                 "'connector' = 'kafka'," +

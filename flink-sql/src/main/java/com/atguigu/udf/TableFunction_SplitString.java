@@ -6,9 +6,12 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.annotation.DataTypeHint;
+import org.apache.flink.table.annotation.FunctionHint;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.TableFunction;
+import org.apache.flink.types.Row;
 
 import static org.apache.flink.table.api.Expressions.$;
 import static org.apache.flink.table.api.Expressions.call;
@@ -38,10 +41,26 @@ public class TableFunction_SplitString {
                 $("ts"),
                 $("vc"));
 
+//        不注册  table api
+        table.joinLateral(call(MyUDTF.class, $("id")))
+                .select($("id"), $("word"), $("length"))
+                .execute()
+                .print();
 
-        table.joinLateral(call(MyTableFunction.class,$("id")).as("word", "length"))
-                .select($("id"),$("word"),$("length"))
+
+        table.joinLateral(call(MyTableFunction.class, $("id")).as("word", "length"))
+                .select($("id"), $("word"), $("length"))
                 .execute().print();
+
+
+        tableEnvironment.createTemporarySystemFunction("mySplit", MyUDTF.class);
+
+//        sql 注册使用
+        tableEnvironment.sqlQuery("select id,word,length from " + table + "" +
+                ",lateral table(mySplit(id))")
+                .execute()
+                .print();
+
 
         env.execute();
     }
@@ -62,11 +81,16 @@ public class TableFunction_SplitString {
             for (String s : split) {
                 collect(Tuple2.of(s, s.length()));
             }
-
-
         }
-
     }
 
-
+    @FunctionHint(output = @DataTypeHint("ROW<word STRING, length INT>"))
+    public static class MyUDTF extends TableFunction<Row> {
+        public void eval(String string) {
+            String[] strings = string.split("_");
+            for (String word : strings) {
+                collect(Row.of(word, word.length()));
+            }
+        }
+    }
 }

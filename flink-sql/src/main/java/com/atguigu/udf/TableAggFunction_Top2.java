@@ -12,9 +12,9 @@ import org.apache.flink.table.functions.TableAggregateFunction;
 import org.apache.flink.util.Collector;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.apache.flink.table.api.Expressions.$;
+import static org.apache.flink.table.api.Expressions.call;
 
 /**
  * @ClassName TableAggFunction_Top2
@@ -39,12 +39,30 @@ public class TableAggFunction_Top2 {
                 $("ts"),
                 $("vc"));
 
+//        不注册使用 table api
+
+        tableEnvironment.createTemporarySystemFunction("aggf", new TableAggF(2));
+
+
+        table.groupBy($("id"))
+                .flatAggregate(call("aggf", $("vc")).as("value", "rank"))
+                .select($("id"),$("value"),$("rank"))
+                .execute()
+                .print();
+
+//        注册使用
+
+
+
+//        sql 使用
+
 
         env.execute();
     }
 
 
-    public static class TableAggF extends TableAggregateFunction<Tuple2<Double, Integer>, List<Double>> {
+    public static class TableAggF extends TableAggregateFunction<Tuple2<Double, Integer>, ArrayList<Double>> {
+
         private int topN = 2;
 
         public TableAggF(int topN) {
@@ -52,8 +70,8 @@ public class TableAggFunction_Top2 {
         }
 
         @Override
-        public List<Double> createAccumulator() {
-            return new ArrayList<>(topN);
+        public ArrayList<Double> createAccumulator() {
+            return new ArrayList<Double>(topN);
         }
 
         public TableAggF() {

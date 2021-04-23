@@ -3,13 +3,6 @@ package com.atguigu.window;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
-/**
- * @ClassName SQL_GroupWindow
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/22 11:42
- * @Version 1.0
- */
 public class SQL_GroupWindow {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -37,19 +30,6 @@ public class SQL_GroupWindow {
                         "GROUP BY TUMBLE(rt, INTERVAL '1' minute),id"
         )
                 .execute().print();
-
-//        tableEnvironment
-//                .sqlQuery(
-//                        "SELECT id, " +
-//                                "  TUMBLE_START(rt, INTERVAL '1' minute) as wStart,  " +
-//                                "  TUMBLE_END(rt, INTERVAL '1' minute) as wEnd,  " +
-//                                "  SUM(vc) sum_vc " +
-//                                "FROM sensor " +
-//                                "GROUP BY TUMBLE(rt, INTERVAL '1' minute), id"
-//                )
-//                .execute()
-//                .print();
-
 
         env.execute();
     }

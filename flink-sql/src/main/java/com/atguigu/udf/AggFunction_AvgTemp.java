@@ -28,12 +28,19 @@ public class AggFunction_AvgTemp {
                 $("id"),
                 $("ts"),
                 $("vc"));
-
+//        table api 不注册
         table.groupBy($("id"))
                 .aggregate(call(AvgTemp.class, $("vc")).as("avg"))
                 .select($("id"), $("avg"))
                 .execute()
                 .print();
+
+//        table  注册使用
+
+        tableEnvironment.createTemporarySystemFunction("myavg", AvgTemp.class);
+
+
+        tableEnvironment.sqlQuery("select id,myavg(vc) from " + table+" group by id");
 
 
         env.execute();

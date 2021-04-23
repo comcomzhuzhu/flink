@@ -1,4 +1,4 @@
-package com.atguigu.window;
+package flinksql_D;
 
 import com.atguigu.apitest.beans.WaterSensor;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
@@ -8,24 +8,22 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
-import org.apache.flink.table.api.Tumble;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
-import org.apache.flink.types.Row;
 
 import java.time.Duration;
 
 import static org.apache.flink.table.api.Expressions.$;
-import static org.apache.flink.table.api.Expressions.lit;
 
 /**
- * @ClassName PT_Stream_Tumbling
+ * @ClassName SQL_GroupWindowHop
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/22 10:11
+ * @Date 2021/4/23 11:50
  * @Version 1.0
  */
-public class PT_Stream_Tumbling {
+public class SQL_GroupWindowHop {
     public static void main(String[] args) throws Exception {
+
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
         DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 7777);
@@ -45,30 +43,24 @@ public class PT_Stream_Tumbling {
                 return new WaterSensor(strings[0], Long.valueOf(strings[1]), Double.valueOf(strings[2]));
             }
         });
-
         Table table = tableEnvironment.fromDataStream(caseClassDS,
                 $("id"),
-                $("ts").rowtime(),
-                $("vc"));
+                $("ts"),
+                $("vc"),
+                $("pt").proctime());
 
-        Table result = table.window(Tumble.over(lit(10).second()).on($("ts")).as("w"))
-                .groupBy($("id"), $("w"))
-                .select($("id"), $("w").start().as("Wstart"),
-                        $("w").end().as("Wend"), $("vc").sum().as("sum"));
 
-        table.window(Tumble.over(lit(10).seconds()).on($("ts")).as("w"))
-                .groupBy($("id"), $("w"))
-                .select($("id"), $("w").start().as("windowS"),
-                        $("w").end().as("windowE"),
-                        $("vc").sum().as("sum"))
+        tableEnvironment.createTemporaryView("sensor", table);
+
+        tableEnvironment.sqlQuery("select " +
+                " id," +
+                " HOP_START(pt,INTERVAL '2' second , INTERVAL '6' second ) wS, " +
+                " count(*) cnt," +
+                " avg(vc) avgVc" +
+                " from sensor" +
+                " group by id,HOP(pt,INTERVAL '2' second , INTERVAL '6' second )")
                 .execute().print();
 
-
-        tableEnvironment.toRetractStream(result, Row.class)
-                .print();
-
-
         env.execute();
-
     }
 }

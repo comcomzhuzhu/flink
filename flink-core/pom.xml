@@ -11,44 +11,45 @@
 
     <artifactId>flink-core</artifactId>
     <version>1.0-SNAPSHOT</version>
-<dependencies>
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
-        <version>${flink.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-csv</artifactId>
-        <version>${flink.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-json</artifactId>
-        <version>${flink.version}</version>
-    </dependency>
-    <!--<dependency>-->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-csv</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-json</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <!--<dependency>-->
         <!--<groupId>org.apache.flink</groupId>-->
         <!--<artifactId>flink-cep-scala_2.11</artifactId>-->
         <!--<version>1.12.0</version>-->
-    <!--</dependency>-->
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-cep_${scala.binary.version}</artifactId>
-        <version>${flink.version}</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka -->
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-connector-kafka_2.12</artifactId>
-        <version>1.12.2</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-compress</artifactId>
-        <version>1.18</version>
-    </dependency>
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-cep_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <!--https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka_2.11</artifactId>
+            <version>1.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.18</version>
+        </dependency>
 
-</dependencies>
+    </dependencies>
 
 </project>

@@ -12,13 +12,6 @@ import org.apache.flink.table.functions.ScalarFunction;
 import static org.apache.flink.table.api.Expressions.$;
 import static org.apache.flink.table.api.Expressions.call;
 
-/**
- * @ClassName ScalarFunction_HashCode
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/22 14:23
- * @Version 1.0
- */
 public class ScalarFunction_HashCode {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -31,7 +24,6 @@ public class ScalarFunction_HashCode {
             return new WaterSensor(strings[0], Long.valueOf(strings[1]), Double.valueOf(strings[2]));
         });
 
-
         Table table = tableEnvironment.fromDataStream(dataDS,
                 $("id"),
                 $("ts"),
@@ -39,20 +31,21 @@ public class ScalarFunction_HashCode {
 
         tableEnvironment.createTemporaryView("sensor", table);
 
-
-        MyHashCode myHashCode = new MyHashCode(17);
-        tableEnvironment.createTemporarySystemFunction("myhash", MyHashCode.class);
-
-        table.select("id, ts, myhash(id)")
-                .execute()
-                .print();
-
-        table.select($("id"),call("myhash", $("id")))
+//        table Api  不注册
+        table.select($("id"), call(MyHashCode.class, $("id")))
                 .execute().print();
 
-        tableEnvironment.sqlQuery("select id,myhash(id)" +
-                "from sensor").execute().print();
+//        注册使用
+        tableEnvironment.createTemporarySystemFunction("myhash", MyHashCode.class);
 
+        table.select($("id"), call("myhash", $("id")))
+                .execute().print();
+
+
+//        sql  方式
+        tableEnvironment.sqlQuery("select id,myhash(id)" +
+                "from sensor")
+                .execute().print();
 
         env.execute();
     }
@@ -72,6 +65,13 @@ public class ScalarFunction_HashCode {
             this.factor = factor;
         }
 
+    }
+
+    //    将下划线转化为-
+    public static class ReplaceFunc extends ScalarFunction {
+        public String eval(String string) {
+            return string.replace("_", "-");
+        }
     }
 
 

@@ -97,8 +97,6 @@ public class WindowAgg_KeyByWindowEnd_Timer {
         private MapState<String, Integer> mapState;
         private boolean isLate = false;
         private Long closeTime = null;
-        private boolean isClose = false;
-
 
         @Override
         public void open(Configuration parameters) {
@@ -116,12 +114,9 @@ public class WindowAgg_KeyByWindowEnd_Timer {
 
         @Override
         public void processElement(Tuple3<String, Long, Integer> value, Context ctx, Collector<Tuple2<String, Integer>> out) throws Exception {
-//          如果窗口已经关了
-            if (isClose) {
-                return;
-            }
-
-//            迟到数据
+//            如果窗口已经关闭了 再也不会有数据来这个方法里了
+//            因为是按照窗口End keyBy的
+//            迟到数据 每来一条更新一次结果
             if (isLate) {
                 mapState.put(value.f0, value.f2);
                 sortAndOut(out);
@@ -136,7 +131,6 @@ public class WindowAgg_KeyByWindowEnd_Timer {
         }
 
         private void sortAndOut(Collector<Tuple2<String, Integer>> out) throws Exception {
-
             ArrayList<Map.Entry<String, Integer>> entries = Lists.newArrayList(mapState.entries().iterator());
 //            按照 出现次数 从大到小排序
             entries.sort(((o1, o2) -> -o1.getValue().compareTo(o2.getValue())));
@@ -151,7 +145,6 @@ public class WindowAgg_KeyByWindowEnd_Timer {
             if (timestamp == closeTime) {
 //                清理状态
                 mapState.clear();
-                isClose = true;
             } else {
                 sortAndOut(out);
                 isLate = true;
