@@ -36,7 +36,6 @@ public class AggFunction_AvgTemp {
                 .print();
 
 //        table  注册使用
-
         tableEnvironment.createTemporarySystemFunction("myavg", AvgTemp.class);
 
 

@@ -41,7 +41,6 @@ public class PT_DDL_TumblingWindow {
 
         tableEnvironment.toAppendStream(result, Row.class).print();
 
-
         env.execute();
     }
 }

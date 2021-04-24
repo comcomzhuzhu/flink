@@ -21,13 +21,12 @@ public class SQL_GroupWindow {
                 ")");
 
 
-        tableEnvironment.sqlQuery(
-                "SELECT id," +
-                        "TUMBLE_START(rt ,INTERVAL '1' minute) as wStart," +
-                        "TUMBLE_END(rt,INTERVAL '1' minute) as wEnd," +
-                        " SUM(vc) sum_Vc " +
-                        "FROM sensor " +
-                        "GROUP BY TUMBLE(rt, INTERVAL '1' minute),id"
+        tableEnvironment.sqlQuery("SELECT id," +
+                "TUMBLE_START(rt ,INTERVAL '1' minute) as wStart," +
+                "TUMBLE_END(rt,INTERVAL '1' minute) as wEnd," +
+                " SUM(vc) sum_Vc " +
+                "FROM sensor " +
+                "GROUP BY TUMBLE(rt, INTERVAL '1' minute),id"
         )
                 .execute().print();
 

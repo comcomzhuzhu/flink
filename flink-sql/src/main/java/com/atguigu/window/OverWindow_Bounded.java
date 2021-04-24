@@ -13,16 +13,8 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
 import java.time.Duration;
 
-import static org.apache.flink.table.api.Expressions.$;
-import static org.apache.flink.table.api.Expressions.lit;
+import static org.apache.flink.table.api.Expressions.*;
 
-/**
- * @ClassName OverWindow_Bounded
- * @Description TODO
- * @Author Xing
- * @Date 2021/4/22 11:34
- * @Version 1.0
- */
 public class OverWindow_Bounded {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -54,6 +46,12 @@ public class OverWindow_Bounded {
                 .select($("id"), $("vc").sum().over($("w")).as("sum"))
                 .execute()
                 .print();
+
+        table.window(Over.partitionBy($("id")).orderBy($("ts")).preceding(rowInterval(3L)).as("w"))
+                .select($("id"),$("vc").sum().over($("w")).as("sum"))
+                .execute()
+                .print();
+
 
 
         env.execute();

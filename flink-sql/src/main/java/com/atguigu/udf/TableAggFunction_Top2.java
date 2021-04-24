@@ -1,6 +1,9 @@
 package com.atguigu.udf;
 
 import com.atguigu.apitest.beans.WaterSensor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
@@ -9,9 +12,8 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.TableAggregateFunction;
+import org.apache.flink.types.Row;
 import org.apache.flink.util.Collector;
-
-import java.util.ArrayList;
 
 import static org.apache.flink.table.api.Expressions.$;
 import static org.apache.flink.table.api.Expressions.call;
@@ -40,28 +42,47 @@ public class TableAggFunction_Top2 {
                 $("vc"));
 
 //        不注册使用 table api
+        Table select = table.groupBy($("id"))
+                .flatAggregate(call(TableAggF.class, $("vc")).as("rk", "vc"))
+                .select($("id"), $("rk"), $("vc"));
 
-        tableEnvironment.createTemporarySystemFunction("aggf", new TableAggF(2));
+        tableEnvironment.toRetractStream(select, Row.class)
+                .print("table API");
 
+//        不注册使用 table API
 
         table.groupBy($("id"))
-                .flatAggregate(call("aggf", $("vc")).as("value", "rank"))
-                .select($("id"),$("value"),$("rank"))
+                .flatAggregate(call(TableAggF.class, $("vc")).as("value", "rank"))
+                .select($("id"), $("value"), $("rank"))
                 .execute()
                 .print();
 
 //        注册使用
 
+        tableEnvironment.createTemporarySystemFunction("aggf", new TableAggF());
+        table.groupBy($("id"))
+                .flatAggregate(call("aggf", $("vc")).as("value", "rank"))
+                .select($("id"), $("value"), $("rank"))
+                .execute()
+                .print();
 
-
-//        sql 使用
+//        无   sql 使用
 
 
         env.execute();
     }
 
 
-    public static class TableAggF extends TableAggregateFunction<Tuple2<Double, Integer>, ArrayList<Double>> {
+    public static class TableAggF extends TableAggregateFunction<Tuple2<String, Double>, TableAggF.ACC> {
+
+        @Data
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class ACC {
+            public Double first = Double.MIN_VALUE;
+            public Double second = Double.MIN_VALUE;
+        }
+
 
         private int topN = 2;
 
@@ -70,25 +91,27 @@ public class TableAggFunction_Top2 {
         }
 
         @Override
-        public ArrayList<Double> createAccumulator() {
-            return new ArrayList<Double>(topN);
+        public ACC createAccumulator() {
+            return new ACC();
         }
 
         public TableAggF() {
         }
 
-        public void accumulate(ArrayList<Double> acc, Double vc) {
-            if (vc > acc.get(0)) {
-                acc.set(1, acc.get(0));
-                acc.set(0, vc);
-            } else if (vc > acc.get(1)) {
-                acc.set(1, vc);
+        public void accumulate(ACC acc, Double vc) {
+            if (vc > acc.getFirst()) {
+                acc.setSecond(acc.getFirst());
+                acc.setFirst(vc);
+            } else if (vc > acc.getSecond()) {
+                acc.setSecond(vc);
             }
         }
 
-        public void emitValue(ArrayList<Double> acc, Collector<Tuple2<Double, Integer>> out) {
-            for (int i = 0; i < Math.min(topN, acc.size()); i++) {
-                out.collect(Tuple2.of(acc.get(i), i + 1));
+        public void emitValue(ACC acc, Collector<Tuple2<String, Double>> out) {
+            out.collect(Tuple2.of("1", acc.getFirst()));
+
+            if (acc.getSecond() != Double.MIN_VALUE) {
+                out.collect(Tuple2.of("2", acc.getSecond()));
             }
         }
 
