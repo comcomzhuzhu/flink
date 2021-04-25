@@ -44,11 +44,10 @@ public class Join {
 //        默认join的状态一直存    可以设置清理参数
         System.out.println(tableEnvironment.getConfig().getIdleStateRetention());
 
-
         tableEnvironment.getConfig().setIdleStateRetention(Duration.ofSeconds(10));
 
 //        join  join  leftJoin  fullJoin
-//        put的join 两条流的状态策略都是 OnCreateAndWrite 只在创建和写的时候
+//        普通的join 两条流的状态策略都是 OnCreateAndWrite 只在创建和写的时候
 //        也就是自己流的数据来的时候更新
         tableEnvironment.sqlQuery("select table1.id," +
                 "table1.name,table2.sex " +
@@ -73,7 +72,7 @@ public class Join {
                     private ValueState<Long> valueState;
 
                     @Override
-                    public void open(Configuration parameters) throws Exception {
+                    public void open(Configuration parameters) {
                         ValueStateDescriptor<Long> longValueStateDescriptor = new ValueStateDescriptor<>("value",
                                 Long.class);
                         StateTtlConfig stateTtlConfig = StateTtlConfig.newBuilder(Time.seconds(10))

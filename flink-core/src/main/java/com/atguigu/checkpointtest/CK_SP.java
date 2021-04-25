@@ -43,8 +43,8 @@ public class CK_SP {
 
         Properties properties = new Properties();
 
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "hadoop102:9092");
-
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "hadoop102:9092,hadoop103:9092,hadoop104:9092");
+        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "ccc");
         DataStreamSource<String> dataDS = env.addSource(new FlinkKafkaConsumer<String>("first", new SimpleStringSchema(), properties));
 
         SingleOutputStreamOperator<Tuple2<String, Long>> wordDS = dataDS.flatMap(new FlatMapFunction<String, Tuple2<String, Long>>() {
