@@ -44,6 +44,8 @@ public class TimeOut_CEP {
                         Long.valueOf(split[3]));
             }
         });
+
+
 //        提取watermark
         SingleOutputStreamOperator<LoginEvent> withWMDS = caseClassDS.assignTimestampsAndWatermarks(WatermarkStrategy.<LoginEvent>forBoundedOutOfOrderness(Duration.ofSeconds(2))
                 .withTimestampAssigner(new SerializableTimestampAssigner<LoginEvent>() {

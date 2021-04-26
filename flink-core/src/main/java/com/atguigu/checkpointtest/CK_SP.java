@@ -5,8 +5,10 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.runtime.state.filesystem.FsStateBackend;
 import org.apache.flink.streaming.api.CheckpointingMode;
+import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.util.Collector;
@@ -26,12 +28,14 @@ public class CK_SP {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/flink-ck"));
-
+        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         env.enableCheckpointing(5000L);
 //
+        env.getCheckpointConfig().getCheckpointTimeout();
         env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
+        env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
 
-        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(5000);
+        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(500);
 
 //        env.getCheckpointConfig().setMaxConcurrentCheckpoints(1);
 

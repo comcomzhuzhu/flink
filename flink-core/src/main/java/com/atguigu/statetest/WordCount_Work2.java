@@ -90,13 +90,13 @@ public class WordCount_Work2 {
                                         String.class, Integer.class)
                         );
                     }
+
                     ListState<Tuple2<String, Integer>> listState;
                     MapState<String, Integer> mapState;
                     HashMap<Double, Tuple2<String, Integer>> hashMap = new HashMap<>();
                     @Override
 //              TODO       调用了三次  一个很大的时间戳 关闭了三个窗口
                     public void process(Context context, Iterable<Tuple3<Double, String, Integer>> elements, Collector<Tuple2<String, Integer>> out) throws Exception {
-
 
 //                         add element to a map if key exist get it and compare number
 //                         use the bigger
@@ -171,6 +171,7 @@ public class WordCount_Work2 {
 
             keys.sort(((o1, o2) -> -o1.compareTo(o2)));
 
+            System.out.println(keys);
 
             if (keys.size() >= 3) {
                 for (int i = 0; i < 3; i++) {
@@ -179,16 +180,16 @@ public class WordCount_Work2 {
             }
 
 
-//            if (top3.size() >= 3) {
-//                for (Double aDouble : iter) {
-//                    if (!top3.contains(aDouble)) {
-//                        mapState.remove(aDouble);
-//                    }
-//                }
-//            }
+            if (top3.size() >= 3) {
+                for (Double aDouble : mapState.keys()) {
+                    if (!top3.contains(aDouble)) {
+                        mapState.remove(aDouble);
+                    }
+                }
+            }
 
 
-            System.out.println(keys);
+            System.out.println(mapState.keys());
 
             for (int i = 0; i < Math.min(keys.size(), 3); i++) {
                 Double aDouble = keys.get(i);

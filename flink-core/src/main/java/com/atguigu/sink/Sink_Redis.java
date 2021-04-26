@@ -12,6 +12,7 @@ import org.apache.flink.streaming.connectors.redis.common.mapper.RedisCommand;
 import org.apache.flink.streaming.connectors.redis.common.mapper.RedisCommandDescription;
 import org.apache.flink.streaming.connectors.redis.common.mapper.RedisMapper;
 
+
 public class Sink_Redis {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -58,7 +59,7 @@ public class Sink_Redis {
     }
 
 
-    public static class MyRedisMapper implements  RedisMapper<SensorReading>{
+    public static class MyRedisMapper implements RedisMapper<SensorReading> {
 
 //         定义保存数据到redis的命令  存成hash  一个id 一个 温度  hset sensor_temp  id temperature
         @Override
