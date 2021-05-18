@@ -1,6 +1,7 @@
 package flinksql_D;
 
-import com.atguigu.apitest.beans.WaterSensor;
+
+import com.zx.bean.WaterSensor;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -15,7 +16,7 @@ import org.apache.flink.types.Row;
  * @ClassName DS_Agg
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/21 15:38
+ * @Date 21 15:38
  * @Version 1.0
  */
 public class DS_Agg {

@@ -1,6 +1,7 @@
 package flinksql_D;
 
-import com.atguigu.apitest.beans.WaterSensor;
+
+import com.zx.bean.WaterSensor;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -17,7 +18,7 @@ import static org.apache.flink.table.api.Expressions.*;
  * @ClassName SlideWindow
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/23 9:09
+ * @Date 23 9:09
  * @Version 1.0
  */
 public class SlideWindow {

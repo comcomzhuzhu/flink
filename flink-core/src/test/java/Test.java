@@ -2,7 +2,7 @@
  * @ClassName Test
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/11 11:35
+ * @Date 11 11:35
  * @Version 1.0
  */
 public class Test {
@@ -12,13 +12,12 @@ public class Test {
         test(myTest);
     }
 
-    private static void test(Runnable r){
+    private static void test(Runnable r) {
         r.run();
     }
 }
-class MyTest implements Runnable{
 
-
+class MyTest implements Runnable {
     @Override
     public void run() {
         System.out.println(this.hashCode());

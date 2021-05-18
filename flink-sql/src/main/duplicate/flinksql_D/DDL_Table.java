@@ -8,7 +8,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * @ClassName DDL_Table
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/21 20:54
+ * @Date 21 20:54
  * @Version 1.0
  */
 public class DDL_Table {

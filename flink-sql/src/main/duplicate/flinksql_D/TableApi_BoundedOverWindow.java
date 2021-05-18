@@ -1,6 +1,7 @@
 package flinksql_D;
 
-import com.atguigu.apitest.beans.WaterSensor;
+
+import com.zx.bean.WaterSensor;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;
@@ -20,7 +21,7 @@ import static org.apache.flink.table.api.Expressions.rowInterval;
  * @ClassName TableApi_BoundedOverWindow
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/23 12:00
+ * @Date 23 12:00
  * @Version 1.0
  */
 public class TableApi_BoundedOverWindow {

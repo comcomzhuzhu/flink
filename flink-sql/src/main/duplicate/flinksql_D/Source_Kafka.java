@@ -18,7 +18,7 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName Source_Kafka
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/21 11:48
+ * @Date 21 11:48
  * @Version 1.0
  */
 public class Source_Kafka {

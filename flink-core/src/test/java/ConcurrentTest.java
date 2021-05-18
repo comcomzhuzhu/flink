@@ -1,4 +1,4 @@
-import com.atguigu.apitest.beans.WaterSensor;
+import com.zx.apitest.beans.WaterSensor;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * @ClassName ConcurrentTest
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/26 8:25
+ * @Date 26 8:25
  * @Version 1.0
  */
 public class ConcurrentTest {

@@ -1,6 +1,7 @@
 package flinksql_D;
 
-import com.atguigu.apitest.beans.WaterSensor;
+
+import com.zx.bean.WaterSensor;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;
@@ -18,7 +19,7 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName SQL_GroupWindowTumbling
  * @Description TODO
  * @Author Xing
- * @Date 2021/4/23 11:56
+ * @Date 23 11:56
  * @Version 1.0
  */
 public class SQL_GroupWindowTumbling {
