@@ -11,7 +11,7 @@ import org.apache.flink.util.Collector
   * @ObjectName State_OpBroadCast
   * @Description TODO
   * @Author Xing
-  * @Date 19 10:50
+  * 19 10:50
   * @Version 1.0
   */
 object State_OpBroadCast {

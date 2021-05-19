@@ -8,7 +8,7 @@ import org.apache.flink.streaming.api.windowing.time.Time
   * @ObjectName Window_1
   * @Description TODO
   * @Author Xing
-  * @Date 14 15:02
+  * 14 15:02
   * @Version 1.0
   */
 object Tumbling_Window_S {

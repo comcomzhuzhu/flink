@@ -31,7 +31,7 @@ import java.util.HashMap;
  * @ClassName WordCount_W2
  * @Description TODO
  * @Author Xing
- * @Date 19 16:24
+ * 19 16:24
  * @Version 1.0
  */
 public class WordCount_W2 {

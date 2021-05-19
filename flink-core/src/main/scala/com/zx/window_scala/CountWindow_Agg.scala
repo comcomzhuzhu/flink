@@ -8,7 +8,7 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName CountWindow_Agg
   * @Description TODO
   * @Author Xing
-  * @Date 14 18:12
+  * 14 18:12
   * @Version 1.0
   */
 object CountWindow_Agg {

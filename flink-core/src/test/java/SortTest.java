@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * @ClassName SortTest
  * @Description TODO
  * @Author Xing
- * @Date 19 18:31
+ * 19 18:31
  * @Version 1.0
  */
 public class SortTest {

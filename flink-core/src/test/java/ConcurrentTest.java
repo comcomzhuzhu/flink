@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * @ClassName ConcurrentTest
  * @Description TODO
  * @Author Xing
- * @Date 26 8:25
+ * 26 8:25
  * @Version 1.0
  */
 public class ConcurrentTest {

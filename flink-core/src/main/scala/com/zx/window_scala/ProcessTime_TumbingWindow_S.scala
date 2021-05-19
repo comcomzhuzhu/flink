@@ -11,7 +11,7 @@ import org.apache.flink.util.Collector
   * @ObjectName ProcessTimeTumbingWindow_S
   * @Description TODO
   * @Author Xing
-  * @Date 14 19:00
+  * 14 19:00
   * @Version 1.0
   */
 object ProcessTime_TumbingWindow_S {

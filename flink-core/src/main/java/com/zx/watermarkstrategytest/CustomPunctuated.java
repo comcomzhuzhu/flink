@@ -13,7 +13,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @ClassName CustomPunctuated
  * @Description TODO
  * @Author Xing
- * @Date 18 22:38
+ * 18 22:38
  * @Version 1.0
  */
 public class CustomPunctuated {

@@ -12,7 +12,7 @@ import org.apache.flink.util.Collector;
  * @ClassName TransformTest1
  * @Description TODO
  * @Author Xing
- * @Date 11 16:32
+ * 11 16:32
  * @Version 1.0
  */
 public class TransformTest1 {

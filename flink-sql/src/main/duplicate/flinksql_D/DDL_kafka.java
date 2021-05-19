@@ -8,7 +8,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * @ClassName DDL_kafka
  * @Description TODO
  * @Author Xing
- * @Date 21 15:44
+ * 21 15:44
  * @Version 1.0
  */
 public class DDL_kafka {

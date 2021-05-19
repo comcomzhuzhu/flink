@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
  * @ClassName SensorCount
  * @Description TODO
  * @Author Xing
- * @Date 2021/5/12 15:00
+ * 2021/5/12 15:00
  * @Version 1.0
  */
 @Data

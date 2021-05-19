@@ -12,7 +12,7 @@ import org.apache.flink.util.Collector
   * @ObjectName ProcessWindowF_S
   * @Description TODO
   * @Author Xing
-  * @Date 14 19:06
+  * 14 19:06
   * @Version 1.0
   */
 object ProcessWindowF_S {

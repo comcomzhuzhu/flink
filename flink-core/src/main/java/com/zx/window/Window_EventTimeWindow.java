@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @ClassName Window_EventTimeWindow
  * @Description TODO
  * @Author Xing
- * @Date 13 21:27
+ * 13 21:27
  * @Version 1.0
  * 1.12 默认事件时间
  */

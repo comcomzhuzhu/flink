@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName R2_Shuffle
   * @Description TODO
   * @Author Xing
-  * @Date 12 16:25
+  * 12 16:25
   * @Version 1.0
   */
 object R2_Shuffle {

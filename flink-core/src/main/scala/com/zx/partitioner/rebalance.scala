@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName rebalance
   * @Description TODO
   * @Author Xing
-  * @Date 13 9:15
+  * 13 9:15
   * @Version 1.0
   */
 object rebalance {

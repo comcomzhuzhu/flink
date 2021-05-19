@@ -4,7 +4,7 @@ package com.zx.bean
   * @ClassName AdsClickLog
   * @Description TODO
   * @Author Xing
-  * @Date 13 20:52
+  * 13 20:52
   * @Version 1.0
   */
 case class AdsClickLog(userId:Long,

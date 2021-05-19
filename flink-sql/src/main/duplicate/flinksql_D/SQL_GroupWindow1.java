@@ -19,7 +19,7 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName SQL_GroupWindow1
  * @Description TODO
  * @Author Xing
- * @Date 23 11:44
+ * 23 11:44
  * @Version 1.0
  */
 public class SQL_GroupWindow1 {

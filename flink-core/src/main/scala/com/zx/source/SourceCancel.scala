@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.scala._
   * @ClassName SourceCancel
   * @Description TODO
   * @Author Xing
-  * @Date 11 15:55
+  * 11 15:55
   * @Version 1.0
   */
 object SourceCancel {

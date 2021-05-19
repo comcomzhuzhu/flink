@@ -14,7 +14,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @ClassName T7_RichFunction
  * @Description TODO
  * @Author Xing
- * @Date 11 21:46
+ * 11 21:46
  * @Version 1.0
  */
 public class T7_RichFunction {

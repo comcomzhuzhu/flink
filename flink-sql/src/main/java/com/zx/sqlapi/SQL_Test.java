@@ -19,7 +19,7 @@ import org.apache.flink.types.Row;
  * @ClassName SQL_Test
  * @Description TODO
  * @Author Xing
- * @Date 21 14:28
+ * 21 14:28
  * @Version 1.0
  */
 public class SQL_Test {

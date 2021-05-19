@@ -23,7 +23,7 @@ import static org.apache.flink.table.api.Expressions.call;
  * @ClassName TableAggFunction_Top2
  * @Description TODO
  * @Author Xing
- * @Date 22 16:01
+ * 22 16:01
  * @Version 1.0
  */
 public class TableAggFunction_Top2 {

@@ -11,7 +11,7 @@ import org.apache.flink.util.Collector;
  * @ClassName CountWindowTest
  * @Description TODO
  * @Author Xing
- * @Date 14 16:25
+ * 14 16:25
  * @Version 1.0
  */
 public class CountWindowTest {

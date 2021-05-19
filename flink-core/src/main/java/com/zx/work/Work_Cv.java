@@ -10,7 +10,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @ClassName Work_Cv
  * @Description TODO
  * @Author Xing
- * @Date 13 14:30
+ * 13 14:30
  * @Version 1.0
  */
 public class Work_Cv {

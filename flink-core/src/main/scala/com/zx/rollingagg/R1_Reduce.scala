@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName R1_Reduce
   * @Description TODO
   * @Author Xing
-  * @Date 13 8:55
+  * 13 8:55
   * @Version 1.0
   */
 object R1_Reduce {

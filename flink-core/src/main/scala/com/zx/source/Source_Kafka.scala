@@ -10,7 +10,7 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
   * @ObjectName Source_Kafka
   * @Description TODO
   * @Author Xing
-  * @Date 12 10:39
+  * 12 10:39
   * @Version 1.0
   */
 object Source_Kafka {

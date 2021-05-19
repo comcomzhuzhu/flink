@@ -11,7 +11,7 @@ import static org.apache.flink.table.api.Expressions.lit;
  * @ClassName ET_DDL_SessionWindow
  * @Description TODO
  * @Author Xing
- * @Date 22 11:17
+ * 22 11:17
  * @Version 1.0
  */
 public class ET_DDL_SessionWindow {

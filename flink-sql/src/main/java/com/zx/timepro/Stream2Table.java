@@ -15,7 +15,7 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName Stream2Table
  * @Description TODO
  * @Author Xing
- * @Date 21 19:52
+ * 21 19:52
  * @Version 1.0
  */
 public class Stream2Table {

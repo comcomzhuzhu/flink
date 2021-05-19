@@ -12,7 +12,7 @@ import static org.apache.flink.table.api.Expressions.lit;
  * @ClassName ET_DDL_SlideWindow
  * @Description TODO
  * @Author Xing
- * @Date 22 10:49
+ * 22 10:49
  * @Version 1.0
  */
 public class ET_DDL_SlideWindow {

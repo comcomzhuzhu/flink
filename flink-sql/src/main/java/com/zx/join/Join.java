@@ -19,7 +19,7 @@ import java.time.Duration;
  * @ClassName Join
  * @Description TODO
  * @Author Xing
- * @Date /23 16:13
+ * /23 16:13
  * @Version 1.0
  */
 public class Join {

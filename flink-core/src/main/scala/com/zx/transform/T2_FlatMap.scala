@@ -8,7 +8,7 @@ import org.apache.flink.util.Collector
   * @ObjectName T2_FlatMap
   * @Description TODO
   * @Author Xing
-  * @Date 12 11:48
+  * 12 11:48
   * @Version 1.0
   */
 object T2_FlatMap {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * @ClassName LIstAdd
  * @Description TODO
  * @Author Xing
- * @Date 20 12:52
+ * 20 12:52
  * @Version 1.0
  */
 public class LIstAdd {

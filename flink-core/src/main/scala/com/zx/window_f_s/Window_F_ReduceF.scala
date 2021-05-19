@@ -13,7 +13,7 @@ import scala.collection.mutable
   * @ObjectName Window_F_ReduceF
   * @Description TODO
   * @Author Xing
-  * @Date 16 18:00
+  * 16 18:00
   * @Version 1.0
   */
 object Window_F_ReduceF {

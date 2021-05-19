@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.scala._
   * @ClassName Stream_Batch
   * @Description TODO
   * @Author Xing
-  * @Date 12 10:13
+  * 12 10:13
   * @Version 1.0
   */
 object Stream_Batch {

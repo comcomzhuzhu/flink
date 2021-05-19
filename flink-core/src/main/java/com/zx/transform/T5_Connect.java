@@ -12,7 +12,7 @@ import org.apache.flink.streaming.api.functions.co.CoMapFunction;
  * @ClassName T5_Connect
  * @Description TODO
  * @Author Xing
- * @Date 11 20:34
+ * 11 20:34
  * @Version 1.0
  */
 public class T5_Connect {

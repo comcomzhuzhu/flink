@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName Province_Ads_Click
   * @Description TODO
   * @Author Xing
-  * @Date 13 20:54
+  * 13 20:54
   * @Version 1.0
   */
 object Province_Ads_Click {

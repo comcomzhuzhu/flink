@@ -19,7 +19,7 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName Sink_File
  * @Description TODO
  * @Author Xing
- * @Date 21 13:54
+ * 21 13:54
  * @Version 1.0
  */
 public class Sink_File {

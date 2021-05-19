@@ -19,7 +19,7 @@ import java.time.Duration;
  * @ClassName WindowEventTime
  * @Description TODO
  * @Author Xing
- * @Date 16 14:33
+ * 16 14:33
  * @Version 1.0
  */
 public class WindowEventTime {

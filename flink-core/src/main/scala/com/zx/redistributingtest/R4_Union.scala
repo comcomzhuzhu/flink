@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName R4_Union
   * @Description TODO
   * @Author Xing
-  * @Date 12 16:42
+  * 12 16:42
   * @Version 1.0
   */
 object R4_Union {

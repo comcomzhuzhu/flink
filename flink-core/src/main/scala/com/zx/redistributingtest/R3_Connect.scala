@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName R3_Connect
   * @Description TODO
   * @Author Xing
-  * @Date 12 16:35
+  * 12 16:35
   * @Version 1.0
   */
 object R3_Connect {

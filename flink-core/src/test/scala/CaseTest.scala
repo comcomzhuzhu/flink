@@ -2,7 +2,7 @@
   * @ObjectName CaseTest
   * @Description TODO
   * @Author Xing
-  * @Date 12 8:33
+  * 12 8:33
   * @Version 1.0
   */
 object CaseTest {

@@ -9,7 +9,7 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer
   * @ObjectName Sink_Kafka
   * @Description TODO
   * @Author Xing
-  * @Date 13 9:26
+  * 13 9:26
   * @Version 1.0
   */
 object Sink_Kafka_Scala {

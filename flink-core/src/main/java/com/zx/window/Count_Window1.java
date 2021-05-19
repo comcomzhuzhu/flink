@@ -13,7 +13,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @ClassName Count_Window1
  * @Description TODO
  * @Author Xing
- * @Date 13 18:56
+ * 13 18:56
  * @Version 1.0
  */
 public class Count_Window1 {

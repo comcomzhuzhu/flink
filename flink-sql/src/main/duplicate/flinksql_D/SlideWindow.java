@@ -18,7 +18,7 @@ import static org.apache.flink.table.api.Expressions.*;
  * @ClassName SlideWindow
  * @Description TODO
  * @Author Xing
- * @Date 23 9:09
+ * 23 9:09
  * @Version 1.0
  */
 public class SlideWindow {
