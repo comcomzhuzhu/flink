@@ -19,7 +19,6 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName SQL_TumblingWindow
  * @Description TODO
  * @Author Xing
- * 23 10:33
  * @Version 1.0
  */
 public class SQL_TumblingWindow {

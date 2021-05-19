@@ -18,7 +18,6 @@ import org.apache.flink.util.Collector;
  * @ClassName ProcessWF
  * @Description TODO
  * @Author Xing
- * 13 18:34
  * @Version 1.0
  */
 public class ProcessWF {

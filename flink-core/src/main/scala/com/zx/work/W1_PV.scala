@@ -9,7 +9,6 @@ import org.apache.flink.util.Collector
   * @ClassName W1
   * @Description TODO
   * @Author Xing
-  * 13 19:57
   * @Version 1.0
   */
 object W1_PV {

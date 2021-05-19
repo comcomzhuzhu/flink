@@ -13,7 +13,6 @@ import org.apache.flink.streaming.api.windowing.time.Time;
  * @ClassName CustomPeriod
  * @Description TODO
  * @Author Xing
- * 17 10:35
  * @Version 1.0
  */
 public class CustomPeriod {

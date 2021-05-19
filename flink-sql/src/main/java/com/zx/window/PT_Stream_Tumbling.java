@@ -22,7 +22,6 @@ import static org.apache.flink.table.api.Expressions.lit;
  * @ClassName PT_Stream_Tumbling
  * @Description TODO
  * @Author Xing
- * 22 10:11
  * @Version 1.0
  */
 public class PT_Stream_Tumbling {

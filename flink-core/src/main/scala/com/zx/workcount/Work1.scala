@@ -1,4 +1,4 @@
-package com.zx.day5work
+package com.zx.workcount
 
 import java.sql.{Connection, DriverManager, PreparedStatement}
 import java.util.Properties

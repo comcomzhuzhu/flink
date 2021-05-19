@@ -15,7 +15,6 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName ProcessTime_StreamToTable
  * @Description TODO
  * @Author Xing
- * 21 20:51
  * @Version 1.0
  */
 public class ProcessTime_StreamToTable {

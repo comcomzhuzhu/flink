@@ -8,7 +8,6 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @ClassName T6_Union
  * @Description TODO
  * @Author Xing
- * 11 21:16
  * @Version 1.0
  */
 public class T6_Union {

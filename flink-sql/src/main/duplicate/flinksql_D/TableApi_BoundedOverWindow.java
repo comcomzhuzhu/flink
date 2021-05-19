@@ -21,7 +21,6 @@ import static org.apache.flink.table.api.Expressions.rowInterval;
  * @ClassName TableApi_BoundedOverWindow
  * @Description TODO
  * @Author Xing
- * 23 12:00
  * @Version 1.0
  */
 public class TableApi_BoundedOverWindow {

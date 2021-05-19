@@ -10,7 +10,6 @@ import scala.collection.mutable.ListBuffer
   * @ClassName CountWindow_S
   * @Description TODO
   * @Author Xing
-  * 14 18:00
   * @Version 1.0
   */
 object CountWindow_S {

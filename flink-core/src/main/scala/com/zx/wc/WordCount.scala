@@ -6,7 +6,6 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName WordCount
   * @Description TODO
   * @Author Xing
-  * 9 20:35
   * @Version 1.0
   */
 object WordCount {

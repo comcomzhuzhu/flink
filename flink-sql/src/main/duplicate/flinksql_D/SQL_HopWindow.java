@@ -19,7 +19,6 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName SQL_HopWindow
  * @Description TODO
  * @Author Xing
- * 23 10:40
  * @Version 1.0
  */
 public class SQL_HopWindow {

@@ -16,7 +16,6 @@ import org.apache.flink.types.Row;
  * @ClassName DS_Agg
  * @Description TODO
  * @Author Xing
- * 21 15:38
  * @Version 1.0
  */
 public class DS_Agg {

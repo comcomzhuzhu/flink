@@ -14,7 +14,6 @@ import org.apache.flink.util.OutputTag;
  * @ClassName T4_SplitSelect
  * @Description TODO
  * @Author Xing
- * 11 17:49
  * @Version 1.0
  */
 public class T4_SplitSelect {

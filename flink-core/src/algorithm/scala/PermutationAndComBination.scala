@@ -2,7 +2,6 @@
   * @ObjectName PermutationAndComBination
   * @Description TODO
   * @Author Xing
-  * 9 20:18
   * @Version 1.0
   *
   *

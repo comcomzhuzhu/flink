@@ -19,7 +19,6 @@ import org.apache.flink.util.Collector;
  * @ClassName Window_ReduceWindowFC
  * @Description TODO
  * @Author Xing
- * 16 9:51
  * @Version 1.0
  */
 public class Window_ReduceWindowFC {

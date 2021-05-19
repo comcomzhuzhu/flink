@@ -10,7 +10,6 @@ import scala.util.Random
   * @ObjectName AppAnalysis_By_Channel
   * @Description TODO
   * @Author Xing
-  * 13 20:20
   * @Version 1.0
   */
 object AppAnalysis_By_Channel {

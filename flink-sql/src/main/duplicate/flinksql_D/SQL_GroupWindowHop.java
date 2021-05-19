@@ -19,7 +19,6 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName SQL_GroupWindowHop
  * @Description TODO
  * @Author Xing
- * 23 11:50
  * @Version 1.0
  */
 public class SQL_GroupWindowHop {

@@ -11,7 +11,6 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName State_OpList_S
   * @Description TODO
   * @Author Xing
-  * 19 10:15
   * @Version 1.0
   *          map 函数计算每个并行度中出现单词的次数
   */

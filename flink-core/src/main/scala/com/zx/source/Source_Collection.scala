@@ -4,7 +4,6 @@ import org.apache.flink.streaming.api.scala._
   * @ClassName Source_Collection
   * @Description TODO
   * @Author Xing
-  * 12 10:32
   * @Version 1.0
   */
 object Source_Collection {

@@ -20,7 +20,6 @@ import static org.apache.flink.table.api.Expressions.*;
  * @ClassName OverWindow_Unbounded
  * @Description TODO
  * @Author Xing
- * 22 11:26
  * @Version 1.0
  */
 public class OverWindow_Unbounded {

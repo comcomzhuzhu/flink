@@ -11,7 +11,6 @@ import org.apache.flink.util.Collector
   * @ObjectName GlobalWindow_S
   * @Description TODO
   * @Author Xing
-  * 14 18:29
   * @Version 1.0
   */
 object GlobalWindow_S {

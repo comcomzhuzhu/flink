@@ -18,7 +18,6 @@ import java.time.Duration;
  * @ClassName WindowET_TW_OOOrderness
  * @Description TODO
  * @Author Xing
- * 16 15:15
  * @Version 1.0
  */
 public class WindowET_TW_OOOrderness {

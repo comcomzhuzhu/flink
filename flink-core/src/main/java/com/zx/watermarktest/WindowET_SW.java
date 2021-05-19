@@ -17,7 +17,6 @@ import java.time.Duration;
  * @ClassName WindowET_SW
  * @Description TODO
  * @Author Xing
- * 16 20:37
  * @Version 1.0
  */
 public class WindowET_SW {

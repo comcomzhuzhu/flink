@@ -13,7 +13,6 @@ import scala.collection.mutable
   * @ClassName Source_Socket
   * @Description TODO
   * @Author Xing
-  * 11 14:51
   * @Version 1.0
   */
 object Source_Socket {

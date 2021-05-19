@@ -19,7 +19,6 @@ import org.apache.flink.util.Collector;
  * @ClassName Window_AggF_WindowF
  * @Description TODO
  * @Author Xing
- * 16 10:17
  * @Version 1.0
  */
 public class Window_AggF_WindowF {

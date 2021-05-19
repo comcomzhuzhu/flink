@@ -9,7 +9,6 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @ClassName W1
  * @Description TODO
  * @Author Xing
- * 13 15:00
  * @Version 1.0
  */
 public class W1 {

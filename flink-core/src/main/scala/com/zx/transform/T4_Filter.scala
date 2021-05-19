@@ -6,7 +6,6 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName T4_Filter
   * @Description TODO
   * @Author Xing
-  * 12 14:28
   * @Version 1.0
   */
 object T4_Filter {

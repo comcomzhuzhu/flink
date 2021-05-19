@@ -10,7 +10,6 @@ import org.apache.flink.util.Collector
   * @ObjectName Window_All_S
   * @Description TODO
   * @Author Xing
-  * 14 19:23
   * @Version 1.0
   */
 object Window_All_S {

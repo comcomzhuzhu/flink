@@ -9,7 +9,6 @@ import org.apache.flink.util.Collector
   * @ObjectName Process_T1
   * @Description TODO
   * @Author Xing
-  * 13 9:02
   * @Version 1.0
   */
 object Process_T1 {

@@ -17,7 +17,6 @@ import static org.apache.flink.table.api.Expressions.$;
  * @ClassName Source_File
  * @Description TODO
  * @Author Xing
- * 21 11:38
  * @Version 1.0
  */
 public class Source_File {

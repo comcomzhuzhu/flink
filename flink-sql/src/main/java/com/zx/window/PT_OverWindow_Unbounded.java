@@ -21,7 +21,6 @@ import static org.apache.flink.table.api.Expressions.UNBOUNDED_RANGE;
  * @ClassName PT_OverWindow_Unbounded
  * @Description TODO
  * @Author Xing
- * 23 10:11
  * @Version 1.0
  */
 public class PT_OverWindow_Unbounded {

@@ -13,7 +13,6 @@ import java.util.Random;
  * @ClassName W_AppAnalysis_By_Chanel
  * @Description TODO
  * @Author Xing
- * 13 15:10
  * @Version 1.0
  */
 public class W_AppAnalysis_By_Chanel {

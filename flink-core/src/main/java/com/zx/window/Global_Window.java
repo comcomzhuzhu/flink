@@ -15,7 +15,6 @@ import org.apache.flink.util.Collector;
  * @ClassName Global_Window
  * @Description TODO
  * @Author Xing
- * 14 16:37
  * @Version 1.0
  */
 public class Global_Window {

@@ -13,7 +13,6 @@ import org.apache.flink.streaming.api.windowing.time.Time
   * @ObjectName CEP_LoginFail
   * @Description TODO
   * @Author Xing
-  * 20 20:14
   * @Version 1.0
   */
 object CEP_LoginFail {

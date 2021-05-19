@@ -21,7 +21,6 @@ import static org.apache.flink.table.api.Expressions.call;
  * @ClassName TableFunction_SplitString
  * @Description TODO
  * @Author Xing
- * 22 15:04
  * @Version 1.0
  */
 public class TableFunction_SplitString {

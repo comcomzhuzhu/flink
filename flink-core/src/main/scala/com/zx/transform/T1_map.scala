@@ -6,7 +6,6 @@ import org.apache.flink.streaming.api.scala._
   * @ObjectName T1_map
   * @Description TODO
   * @Author Xing
-  * 12 11:41
   * @Version 1.0
   */
 object T1_map {

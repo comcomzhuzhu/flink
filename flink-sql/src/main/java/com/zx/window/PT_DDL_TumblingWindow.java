@@ -13,7 +13,6 @@ import static org.apache.flink.table.api.Expressions.lit;
  * @ClassName PT_DDL_TumblingWindow
  * @Description TODO
  * @Author Xing
- * 21 20:35
  * @Version 1.0
  */
 public class PT_DDL_TumblingWindow {

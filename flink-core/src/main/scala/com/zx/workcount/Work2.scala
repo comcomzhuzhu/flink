@@ -1,4 +1,4 @@
-package com.zx.day5work
+package com.zx.workcount
 
 import org.apache.flink.streaming.api.functions.KeyedProcessFunction
 import org.apache.flink.streaming.api.scala._
@@ -10,7 +10,6 @@ import scala.collection.mutable
   * @ObjectName Work2
   * @Description TODO
   * @Author Xing
-  * 14 8:59
   * @Version 1.0
   */
 object Work2 {
