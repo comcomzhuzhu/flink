@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import com.zx.apitest.beans.MarketingUserBehavior;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;

@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import com.zx.apitest.beans.UserBehavior;
 import org.apache.flink.api.common.typeinfo.Types;

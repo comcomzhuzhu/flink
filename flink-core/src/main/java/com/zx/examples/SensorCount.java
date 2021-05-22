@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

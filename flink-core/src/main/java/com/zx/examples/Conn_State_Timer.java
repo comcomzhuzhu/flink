@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import com.zx.apitest.beans.OrderEvent;
 import com.zx.apitest.beans.TxEvent;

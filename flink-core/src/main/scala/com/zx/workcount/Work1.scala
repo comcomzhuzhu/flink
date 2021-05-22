@@ -45,7 +45,7 @@ object Work1 {
     env.execute()
   }
 
-  class SinkDay05 extends RichSinkFunction[(String, Long)] {
+  class Sink5 extends RichSinkFunction[(String, Long)] {
     var conn: Connection = _
     var pst: PreparedStatement = _
 
@@ -57,7 +57,7 @@ object Work1 {
 
     override def open(parameters: Configuration): Unit = {
       conn = DriverManager.getConnection("jdbc://hadoop102/test", "root", "123456")
-      conn.prepareStatement("insert into day051 values(?,?)")
+      conn.prepareStatement("insert into  values(?,?)")
     }
 
     override def close(): Unit = {

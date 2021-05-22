@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;

@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;

@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import com.zx.apitest.beans.OrderEvent;
 import com.zx.apitest.beans.TxEvent;
@@ -11,7 +11,7 @@ import org.apache.flink.util.Collector;
 import java.util.HashMap;
 import java.util.Map;
 
-public class W2 {
+public class connTimer2intervalJoin {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(10);

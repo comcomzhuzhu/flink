@@ -1,4 +1,4 @@
-package com.zx.work;
+package com.zx.examples;
 
 import com.zx.apitest.beans.WaterSensor;
 import org.apache.flink.api.common.functions.MapFunction;
