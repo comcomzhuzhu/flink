@@ -13,7 +13,7 @@ public class SQL_Kafka {
                 "with (" +
                 " 'connector' = 'kafka'," +
                 " 'topic'='first'," +
-                " 'properties.bootstrap.servers' = 'hadoop102:9092', " +
+                " 'properties.bootstrap.servers' = 'zx101:9092', " +
                 " 'properties.group.id' = 'testGroup', " +
                 " 'format' = 'csv' )");
 
@@ -26,7 +26,7 @@ public class SQL_Kafka {
                 "with (" +
                 " 'connector' = 'kafka'," +
                 " 'topic'='test'," +
-                " 'properties.bootstrap.servers' = 'hadoop102:9092', " +
+                " 'properties.bootstrap.servers' = 'zx101:9092', " +
                 " 'properties.group.id' = 'testGroup', " +
                 " 'format' = 'json' )");
 

@@ -24,7 +24,7 @@ object Sink_Kafka_Scala {
 
     val lineDS: DataStream[String] = caseClassDS.map(caseClass =>caseClass.toString)
 
-    val sink = new FlinkKafkaProducer[String]("hadoop102:9092","first",new SimpleStringSchema())
+    val sink = new FlinkKafkaProducer[String]("zx101:9092","first",new SimpleStringSchema())
 
     lineDS.addSink(sink)
 

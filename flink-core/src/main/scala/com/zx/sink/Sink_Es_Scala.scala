@@ -13,11 +13,11 @@ object Sink_Es_Scala{
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102", 8877)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101", 8877)
 
     val httpHosts = new java.util.ArrayList[HttpHost]
 
-    httpHosts.add(new HttpHost("hadoop102", 9200))
+    httpHosts.add(new HttpHost("zx101", 9200))
     httpHosts.add(new HttpHost("hadoop103", 9200))
     httpHosts.add(new HttpHost("hadoop104", 9200))
 

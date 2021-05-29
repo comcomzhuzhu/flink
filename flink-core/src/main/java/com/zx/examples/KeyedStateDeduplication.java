@@ -32,7 +32,7 @@ public class KeyedStateDeduplication {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         env.setParallelism(4);
-        RocksDBStateBackend rocksDBStateBackend = new RocksDBStateBackend("hdfs://hadoop102:8020/flink-ck/deduplication", true);
+        RocksDBStateBackend rocksDBStateBackend = new RocksDBStateBackend("hdfs://zx101:8020/flink-ck/deduplication", true);
         rocksDBStateBackend.setNumberOfTransferThreads(3);
         rocksDBStateBackend.setPredefinedOptions(PredefinedOptions.SPINNING_DISK_OPTIMIZED_HIGH_MEM);
 

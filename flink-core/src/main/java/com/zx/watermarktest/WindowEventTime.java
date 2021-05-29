@@ -24,7 +24,7 @@ import java.time.Duration;
 public class WindowEventTime {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 4777);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 4777);
         env.setParallelism(1);
 
         SingleOutputStreamOperator<WaterSensor> dataDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {

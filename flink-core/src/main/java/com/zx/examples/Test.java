@@ -31,7 +31,7 @@ public class Test {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(4);
         //2.读取端口数据创建流同时提取时间戳生成Watermark,并转换为元组
-        DataStreamSource<String> streamSource = env.socketTextStream("hadoop102", 9999);
+        DataStreamSource<String> streamSource = env.socketTextStream("zx101", 9999);
         SingleOutputStreamOperator<Tuple2<String, Integer>> sensorToOneDS = streamSource
                 .assignTimestampsAndWatermarks(WatermarkStrategy.<String>forBoundedOutOfOrderness(Duration.ofSeconds(0))
                         .withTimestampAssigner(new SerializableTimestampAssigner<String>() {

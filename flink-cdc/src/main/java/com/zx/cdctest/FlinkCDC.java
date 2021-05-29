@@ -22,10 +22,10 @@ public class FlinkCDC {
 
         env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 2000L));
 //       设置状态后端位置
-        env.setStateBackend(new FsStateBackend("hadoop102:8020/flink-ck"));
+        env.setStateBackend(new FsStateBackend("zx101:8020/flink-ck"));
 
         DebeziumSourceFunction<String> source = MySQLSource.<String>builder()
-                .hostname("hadoop102")
+                .hostname("zx101")
                 .port(3306)
                 .username("root")
                 .password("123456")

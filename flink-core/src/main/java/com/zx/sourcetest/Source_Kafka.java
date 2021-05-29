@@ -12,7 +12,7 @@ public class Source_Kafka {
 
         env.setParallelism(1);
         Properties pro = new Properties();
-        pro.setProperty("bootstrap.servers", "hadoop102:9092,hadoop103:9092,hadoop104:9092");
+        pro.setProperty("bootstrap.servers", "zx101:9092,hadoop103:9092,hadoop104:9092");
         pro.setProperty("group.id", "test1");
         pro.setProperty("auto.offset.reset", "latest");
         FlinkKafkaConsumer<String> first = new FlinkKafkaConsumer<>("first", new SimpleStringSchema(), pro);

@@ -22,10 +22,10 @@ public class WordCount_CK {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 //        设置状态后端
-//        env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/flink-ck"));
+//        env.setStateBackend(new FsStateBackend("hdfs://zx101:8020/flink-ck"));
 
 
-        RocksDBStateBackend rocksDBStateBackend = new RocksDBStateBackend("hdfs://hadoop102:8020/flink-ck", true);
+        RocksDBStateBackend rocksDBStateBackend = new RocksDBStateBackend("hdfs://zx101:8020/flink-ck", true);
         env.setStateBackend(rocksDBStateBackend);
         env.enableCheckpointing(TimeUnit.MINUTES.toMillis(3));
         env.getCheckpointConfig().setCheckpointTimeout(60*10*1000L);
@@ -52,11 +52,11 @@ public class WordCount_CK {
 
 //        读取数据
         Properties properties = new Properties();
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "hadoop102:9092");
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "zx101:9092");
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "aaa");
         DataStreamSource<String> first = env.addSource(new FlinkKafkaConsumer<String>("first", new SimpleStringSchema(), properties));
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8888);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8888);
 
         first.flatMap(new FlatMapFunction<String, Tuple2<String, Integer>>() {
             @Override

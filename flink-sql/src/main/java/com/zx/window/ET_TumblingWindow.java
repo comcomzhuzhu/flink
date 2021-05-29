@@ -46,7 +46,7 @@ public class ET_TumblingWindow {
 //         默认10000条，调整TopN cahce到20万，那么理论命中率能达200000*50/100/100000 = 100%
         configuration.setString("table.exec.topn.cache-size", "200000");
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8888);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8888);
 
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override

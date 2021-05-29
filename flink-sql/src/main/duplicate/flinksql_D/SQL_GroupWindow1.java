@@ -27,7 +27,7 @@ public class SQL_GroupWindow1 {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 7777);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 7777);
         SingleOutputStreamOperator<String> withWMDS = socketTextStream.assignTimestampsAndWatermarks(WatermarkStrategy.<String>forBoundedOutOfOrderness(Duration.ofSeconds(2))
                 .withTimestampAssigner(new SerializableTimestampAssigner<String>() {
                     @Override

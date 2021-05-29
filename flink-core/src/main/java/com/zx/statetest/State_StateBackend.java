@@ -24,8 +24,8 @@ public class State_StateBackend {
 //        状态后端配置
 
         env.setStateBackend(new MemoryStateBackend());
-        env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/flink/checkpoints/fs"));
-        env.setStateBackend(new RocksDBStateBackend("hdfs://hadoop102:8020/flink/checkpoints/rocksdb"));
+        env.setStateBackend(new FsStateBackend("hdfs://zx101:8020/flink/checkpoints/fs"));
+        env.setStateBackend(new RocksDBStateBackend("hdfs://zx101:8020/flink/checkpoints/rocksdb"));
 
 //         默认500ms做一次 ck 可以手动传参
 //         还可以设置 状态级别
@@ -57,7 +57,7 @@ public class State_StateBackend {
         env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.minutes(10),Time.minutes(1)));
 
 
-        DataStreamSource<String> dss = env.socketTextStream("hadoop102", 1208);
+        DataStreamSource<String> dss = env.socketTextStream("zx101", 1208);
         SingleOutputStreamOperator<SensorReading> dataDS = dss.map((MapFunction<String, SensorReading>) value -> {
             String[] fields = value.split(",");
             return new SensorReading(fields[0], Long.valueOf(fields[1]), Double.valueOf(fields[2]));

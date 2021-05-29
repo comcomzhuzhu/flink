@@ -26,7 +26,7 @@ import java.time.Duration;
 public class Timer_EventTime {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        SingleOutputStreamOperator<WaterSensor> dataDS = env.socketTextStream("hadoop102", 7777)
+        SingleOutputStreamOperator<WaterSensor> dataDS = env.socketTextStream("zx101", 7777)
                 .map(new MapFunction<String, WaterSensor>() {
                     @Override
                     public WaterSensor map(String value) {

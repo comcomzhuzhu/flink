@@ -30,7 +30,7 @@ public class ConcurrentTest {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 7777);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 7777);
 
 //        data from socket ass water mark near source  for the last data only need put one time
         SingleOutputStreamOperator<String> withWMDS = socketTextStream.assignTimestampsAndWatermarks(WatermarkStrategy.<String>forBoundedOutOfOrderness(Duration.ofSeconds(2))

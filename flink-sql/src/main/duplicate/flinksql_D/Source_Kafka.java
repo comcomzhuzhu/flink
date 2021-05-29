@@ -30,7 +30,7 @@ public class Source_Kafka {
         tableEnv.connect(new Kafka()
         .version("universal")
         .topic("first")
-        .property(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"hadoop102:9092")
+        .property(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"zx101:9092")
         .property(ConsumerConfig.GROUP_ID_CONFIG, "group1"))
                 .withFormat(new Csv())
                 .withSchema(new Schema()

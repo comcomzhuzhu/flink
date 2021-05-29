@@ -14,7 +14,7 @@ import org.apache.flink.util.Collector
   */
 object WindowOtherAPI {
   val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-  val socketDS: DataStream[String] = env.socketTextStream("hadoop102", 8887)
+  val socketDS: DataStream[String] = env.socketTextStream("zx101", 8887)
 
   val keyedStream: KeyedStream[(String, Long), String] = socketDS.flatMap(new FlatMapFunction[String, (String, Long)] {
     override def flatMap(value: String, out: Collector[(String, Long)]): Unit = {

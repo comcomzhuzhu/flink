@@ -15,7 +15,7 @@ import org.apache.flink.util.Collector;
 public class ProcessTime_TumblingWindow {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8899);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8899);
         KeyedStream<Tuple2<String, Long>, String> keyedStream = socketTextStream.flatMap(new FlatMapFunction<String, Tuple2<String, Long>>() {
             @Override
             public void flatMap(String value, Collector<Tuple2<String, Long>> out) {

@@ -8,9 +8,9 @@ import org.apache.flink.streaming.connectors.redis.common.mapper.{RedisCommand, 
 object Sink_Redis_Scala {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102", 8881)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101", 8881)
     val config: FlinkJedisPoolConfig = new FlinkJedisPoolConfig.Builder()
-      .setHost("hadoop102")
+      .setHost("zx101")
       .setPort(6379)
       .build()
 

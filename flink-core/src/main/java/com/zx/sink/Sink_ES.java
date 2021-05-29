@@ -30,7 +30,7 @@ public class Sink_ES {
         });
         List<HttpHost> httpHosts = new ArrayList<>();
 
-        httpHosts.add(new HttpHost("hadoop102",9200,"http"));
+        httpHosts.add(new HttpHost("zx101",9200,"http"));
         httpHosts.add(new HttpHost("hadoop103",9200,"http"));
         httpHosts.add(new HttpHost("hadoop104",9200,"http"));
 

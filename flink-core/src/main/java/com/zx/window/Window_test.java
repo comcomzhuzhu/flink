@@ -16,7 +16,7 @@ public class Window_test {
 //        TODO 有界流 无法等15S再执行 直接结束了 需要换成无界流
 //        DataStreamSource<String> dss = env.readTextFile("flink-test/input/sensor.txt");
 
-        DataStreamSource<String> dss = env.socketTextStream("hadoop102", 1208);
+        DataStreamSource<String> dss = env.socketTextStream("zx101", 1208);
 
 
         SingleOutputStreamOperator<SensorReading> caseClassDS = dss.map(new MapFunction<String, SensorReading>() {

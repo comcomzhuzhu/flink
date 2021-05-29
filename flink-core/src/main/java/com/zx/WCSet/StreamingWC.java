@@ -11,7 +11,7 @@ import org.apache.flink.util.Collector;
 public class StreamingWC {
     public static void main(String[] args) {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> dss = env.socketTextStream("hadoop102", 9999);
+        DataStreamSource<String> dss = env.socketTextStream("zx101", 9999);
 
         SingleOutputStreamOperator<Tuple2<String, Long>> wordAndOne = dss.flatMap(new FlatMapFunction<String, Tuple2<String, Long>>() {
             @Override

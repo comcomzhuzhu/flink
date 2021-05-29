@@ -21,8 +21,8 @@ import java.time.Duration;
 public class Conn_Timer_Join {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> orderDS = env.socketTextStream("hadoop102", 7777);
-        DataStreamSource<String> txDS = env.socketTextStream("hadoop102", 8888);
+        DataStreamSource<String> orderDS = env.socketTextStream("zx101", 7777);
+        DataStreamSource<String> txDS = env.socketTextStream("zx101", 8888);
 
         SingleOutputStreamOperator<OrderEvent> ordercaseDS = orderDS.map(new MapFunction<String, OrderEvent>() {
             @Override

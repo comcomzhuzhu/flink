@@ -17,7 +17,7 @@ public class DS2SQL_Agg {
 
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
 //        获取数据流
-        DataStreamSource<String> socketDS = env.socketTextStream("hadoop102", 9999);
+        DataStreamSource<String> socketDS = env.socketTextStream("zx101", 9999);
 
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketDS.map(new MapFunction<String, WaterSensor>() {
             @Override

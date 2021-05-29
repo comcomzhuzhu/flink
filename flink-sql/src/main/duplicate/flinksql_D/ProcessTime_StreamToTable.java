@@ -21,7 +21,7 @@ public class ProcessTime_StreamToTable {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 9999);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 9999);
 
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
 

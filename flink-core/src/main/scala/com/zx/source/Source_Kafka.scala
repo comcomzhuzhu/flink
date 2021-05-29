@@ -17,7 +17,7 @@ object Source_Kafka {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
     val pro = new Properties()
-    pro.setProperty("bootstrap.servers","hadoop102:9092")
+    pro.setProperty("bootstrap.servers","zx101:9092")
     pro.setProperty("group.id","scala")
 
     val kafkaSource: DataStream[String] = env.addSource(new FlinkKafkaConsumer[String]("first",new SimpleStringSchema(),pro))

@@ -28,7 +28,7 @@ public class Sink_File {
 
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8888);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8888);
 
         SingleOutputStreamOperator<WaterSensor> dataDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override

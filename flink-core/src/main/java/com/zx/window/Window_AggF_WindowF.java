@@ -24,7 +24,7 @@ import org.apache.flink.util.Collector;
 public class Window_AggF_WindowF {
     public static void main(String[] args) {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8777);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8777);
         SingleOutputStreamOperator<Tuple2<String, Long>> flatMapDS = socketTextStream.flatMap(new FlatMapFunction<String, Tuple2<String, Long>>() {
             @Override
             public void flatMap(String value, Collector<Tuple2<String, Long>> out) throws Exception {

@@ -18,10 +18,10 @@ object Work1 {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(3)
     val pro = new Properties()
-    pro.put("bootstrap.server", "hadoop102:9092")
+    pro.put("bootstrap.server", "zx101:9092")
     val kafkaDS: DataStream[String] = env.addSource(new FlinkKafkaConsumer[String]("first", new SimpleStringSchema(), pro))
 
-    env.socketTextStream("hadoop102", 1589)
+    env.socketTextStream("zx101", 1589)
       .flatMap(_.split(" ")).map((_, 1L))
       .keyBy(_._1)
       //      .reduce(new ReduceFunction[(String, Long)] {
@@ -56,7 +56,7 @@ object Work1 {
     }
 
     override def open(parameters: Configuration): Unit = {
-      conn = DriverManager.getConnection("jdbc://hadoop102/test", "root", "123456")
+      conn = DriverManager.getConnection("jdbc://zx101/test", "root", "123456")
       conn.prepareStatement("insert into  values(?,?)")
     }
 

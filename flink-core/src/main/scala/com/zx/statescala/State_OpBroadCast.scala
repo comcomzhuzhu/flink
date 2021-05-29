@@ -18,8 +18,8 @@ object State_OpBroadCast {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
     //    读取数据创建主流  读取数据创建配置流
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102", 9999)
-    val channelDS: DataStream[String] = env.socketTextStream("hadoop102", 9992)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101", 9999)
+    val channelDS: DataStream[String] = env.socketTextStream("zx101", 9992)
     //    将配置流广播
 
     val mapDes = new MapStateDescriptor[String, String]("channel",

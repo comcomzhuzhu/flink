@@ -26,7 +26,7 @@ object Sink_JDBC {
     var pstm: PreparedStatement = _
 
     override def open(parameters: Configuration): Unit = {
-      conn = DriverManager.getConnection("jdbc:mysql://hadoop102:3306/test?useSSL=false", "root", "123456")
+      conn = DriverManager.getConnection("jdbc:mysql://zx101:3306/test?useSSL=false", "root", "123456")
       pstm = conn.prepareStatement("insert into sensor_scala values(?,?,?)")
     }
 

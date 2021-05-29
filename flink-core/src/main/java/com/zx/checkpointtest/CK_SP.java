@@ -15,7 +15,7 @@ public class CK_SP {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/flink-ck"));
+        env.setStateBackend(new FsStateBackend("hdfs://zx101:8020/flink-ck"));
 //        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         env.enableCheckpointing(5000L);
 
@@ -35,12 +35,12 @@ public class CK_SP {
 
 //        Properties properties = new Properties();
 //
-//        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "hadoop102:9092,hadoop103:9092,hadoop104:9092");
+//        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "zx101:9092,hadoop103:9092,hadoop104:9092");
 //        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "ccc");
 //        DataStreamSource<String> dataDS = env.addSource(new FlinkKafkaConsumer<String>("first", new SimpleStringSchema(), properties));
 
 
-        DataStreamSource<String> dataDS = env.socketTextStream("hadoop102", 8777);
+        DataStreamSource<String> dataDS = env.socketTextStream("zx101", 8777);
 
         SingleOutputStreamOperator<Tuple2<String, Long>> wordDS = dataDS.flatMap(new FlatMapFunction<String, Tuple2<String, Long>>() {
             @Override

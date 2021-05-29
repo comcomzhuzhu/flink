@@ -3,7 +3,7 @@
 <configuration>
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:mysql://hadoop102:3306/metastore?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8</value>
+        <value>jdbc:mysql://zx101:3306/metastore?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8</value>
     </property>
 
     <property>
@@ -38,7 +38,7 @@
 
     <property>
         <name>hive.server2.thrift.bind.host</name>
-        <value>hadoop102</value>
+        <value>zx101</value>
     </property>
 
     <property>
@@ -66,7 +66,7 @@
     <!-- 指定存储元数据要连接的地址 -->
     <property>
         <name>hive.metastore.uris</name>
-        <value>thrift://hadoop102:9083</value>
+        <value>thrift://zx101:9083</value>
     </property>
 
 

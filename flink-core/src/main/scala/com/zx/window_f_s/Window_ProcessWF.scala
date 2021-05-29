@@ -21,7 +21,7 @@ object Window_ProcessWF {
 
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
-    val socketTS: DataStream[String] = env.socketTextStream("hadoop102", 5577)
+    val socketTS: DataStream[String] = env.socketTextStream("zx101", 5577)
 
     val wordDS: DataStream[(String, Long)] = socketTS.flatMap(line => {
       val list = mutable.ListBuffer[(String, Long)]()

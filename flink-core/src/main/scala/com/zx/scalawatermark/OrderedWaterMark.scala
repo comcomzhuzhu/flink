@@ -11,7 +11,7 @@ import org.apache.flink.streaming.api.windowing.time.Time
 object OrderedWaterMark {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102",8544)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101",8544)
 //    env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
     val caseClassDS: DataStream[WaterSensor] = socketDS.map((line: String) => {
       val strings: Array[String] = line.split(",")

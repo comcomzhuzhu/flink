@@ -34,7 +34,7 @@ public class WaterMarkTest {
 //	}
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         env.getConfig().setAutoWatermarkInterval(100);
-        DataStreamSource<String> dss = env.socketTextStream("hadoop102", 1208);
+        DataStreamSource<String> dss = env.socketTextStream("zx101", 1208);
         SingleOutputStreamOperator<SensorReading> caseDS = dss.map((MapFunction<String, SensorReading>) value -> {
             String[] fields = value.split(",");
             return new SensorReading(fields[0], Long.valueOf(fields[1]), Double.valueOf(fields[2]));

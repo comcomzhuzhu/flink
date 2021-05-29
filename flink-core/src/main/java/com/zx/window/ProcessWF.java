@@ -25,7 +25,7 @@ public class ProcessWF {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 //        DataStreamSource<String> dss = env.readTextFile("flink-test/input/sensor.txt");
 
-        DataStreamSource<String> dss = env.socketTextStream("hadoop102", 1208);
+        DataStreamSource<String> dss = env.socketTextStream("zx101", 1208);
 
         SingleOutputStreamOperator<SensorReading> caseDS = dss.map((MapFunction<String, SensorReading>) value -> {
             String[] fields = value.split(",");

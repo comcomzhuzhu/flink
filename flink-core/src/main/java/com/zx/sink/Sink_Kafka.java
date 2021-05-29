@@ -23,11 +23,11 @@ public class Sink_Kafka {
             }
         });
 
-        FlinkKafkaProducer<String> kafkaProducer = new FlinkKafkaProducer<>("hadoop102:9092", "first", new SimpleStringSchema());
+        FlinkKafkaProducer<String> kafkaProducer = new FlinkKafkaProducer<>("zx101:9092", "first", new SimpleStringSchema());
 
         caseClassDS.addSink(kafkaProducer);
         Properties properties = new Properties();
-        properties.setProperty("bootstrap.servers", "hadoop102:9092");
+        properties.setProperty("bootstrap.servers", "zx101:9092");
         caseClassDS.addSink(new FlinkKafkaProducer<>("first", new SimpleStringSchema(), properties));
 
         env.execute();

@@ -26,7 +26,7 @@ public class Window_ReduceWF {
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8777);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8777);
         SingleOutputStreamOperator<Tuple2<String, Long>> flatMapDS = socketTextStream.flatMap(new FlatMapFunction<String, Tuple2<String, Long>>() {
             @Override
             public void flatMap(String value, Collector<Tuple2<String, Long>> out) throws Exception {

@@ -25,7 +25,7 @@ public class SQL_Test {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 7777);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 7777);
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketTextStream
                 .map(new MapFunction<String, WaterSensor>() {
                     @Override
@@ -72,7 +72,7 @@ public class SQL_Test {
                         .build(),
                 new JdbcConnectionOptions.JdbcConnectionOptionsBuilder()
                         .withDriverName("com.mysql.jdbc.Driver")
-                        .withUrl("jdbc:mysql://hadoop102:3306/test?useSSL=false")
+                        .withUrl("jdbc:mysql://zx101:3306/test?useSSL=false")
                         .withUsername("root")
                         .withPassword("123456")
                         .build()));

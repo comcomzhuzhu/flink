@@ -25,7 +25,6 @@ public class Source_CusSource {
         DataStreamSource<SensorReading> dss = env.addSource(mySensorSource);
         dss.print();
         env.execute();
-
     }
 
     public static class MySensorSource implements SourceFunction<SensorReading> {

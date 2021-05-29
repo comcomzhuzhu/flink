@@ -21,7 +21,7 @@ public class Stream2Table {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8888);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8888);
 
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override

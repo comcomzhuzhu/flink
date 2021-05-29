@@ -23,7 +23,7 @@ public class WindowET_SW {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 3333);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 3333);
 
 
         SingleOutputStreamOperator<WaterSensor> dataDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {

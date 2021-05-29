@@ -22,7 +22,7 @@ public class DDL2Table_ET {
                 "'connector.type' = 'kafka'," +
                 "'connector.version' = 'universal'," +
                 "'connector.topic' = 'test'," +
-                "'connector.properties.bootstrap.servers' = 'hadoop102:9092'," +
+                "'connector.properties.bootstrap.servers' = 'zx101:9092'," +
                 "'connector.properties.group.id' = 'bigdata1109'," +
                 "'format.type' = 'json'" +
                 ")");

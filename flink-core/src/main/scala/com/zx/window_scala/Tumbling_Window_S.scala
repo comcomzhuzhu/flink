@@ -14,7 +14,7 @@ object Tumbling_Window_S {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
-    val dataDS: DataStream[String] = env.socketTextStream("hadoop102",5577)
+    val dataDS: DataStream[String] = env.socketTextStream("zx101",5577)
 
     dataDS.keyBy(t=>t)
         .window(TumblingEventTimeWindows.of(Time.seconds(10)))

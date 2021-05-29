@@ -30,7 +30,7 @@ public class WindowET_SW_OOOrderness {
 
         env.setParallelism(1);
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 3333);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 3333);
 
         SingleOutputStreamOperator<WaterSensor> dataDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override

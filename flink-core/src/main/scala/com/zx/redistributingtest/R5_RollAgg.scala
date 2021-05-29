@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.scala._
 object R5_RollAgg {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102",9977)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101",9977)
 
     val caseClassDS: DataStream[WaterSensor] = socketDS.map(new MapFunction[String, WaterSensor] {
       override def map(value: String): WaterSensor = {

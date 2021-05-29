@@ -15,7 +15,7 @@ object T3_RichMap {
 
     val sourceDS: DataStream[Int] = env.fromElements(1, 2, 3, 4)
 
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102", 8899)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101", 8899)
 
     val textDS: DataStream[String] = env.readTextFile("flink-test/input/water.txt")
 

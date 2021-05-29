@@ -56,7 +56,7 @@ public class Sink_Mysql {
 
         @Override
         public void open(Configuration parameters) throws Exception {
-            conn = DriverManager.getConnection("jdbc:mysql://hadoop102:3306/test?useSSL=false", "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://zx101:3306/test?useSSL=false", "root", "123456");
             insertStmt = conn.prepareStatement("insert into  sensor_temp(id,temp)values (?,?)");
             updateStmt = conn.prepareStatement("update  sensor_temp set temp = ? where id =?");
         }

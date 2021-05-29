@@ -12,7 +12,7 @@ import org.apache.flink.streaming.api.scala._
 object R1_Reduce {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102",9944)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101",9944)
 
     val caseClassDS: DataStream[WaterSensor] = socketDS.map {
       line: String => {

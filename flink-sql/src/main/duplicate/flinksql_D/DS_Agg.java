@@ -23,7 +23,7 @@ public class DS_Agg {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8888);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8888);
 
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override

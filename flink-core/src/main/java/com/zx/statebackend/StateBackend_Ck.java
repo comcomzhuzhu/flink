@@ -11,7 +11,7 @@ public class StateBackend_Ck {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         env.setStateBackend(new MemoryStateBackend());
-        env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/"));
+        env.setStateBackend(new FsStateBackend("hdfs://zx101:8020/"));
 
         env.setStateBackend(new RocksDBStateBackend(""));
 

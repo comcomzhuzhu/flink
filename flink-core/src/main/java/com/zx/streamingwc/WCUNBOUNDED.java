@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class WCUNBOUNDED {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> lineDDS = env.socketTextStream("hadoop102", 9999);
+        DataStreamSource<String> lineDDS = env.socketTextStream("zx101", 9999);
         env.disableOperatorChaining();
         SingleOutputStreamOperator<Tuple2<String, Long>> wordOne = lineDDS.flatMap((String line, Collector<String> words) -> {
             Arrays.stream(line.split(" ")).forEach(words::collect);

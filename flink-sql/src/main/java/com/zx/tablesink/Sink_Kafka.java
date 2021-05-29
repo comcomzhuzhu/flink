@@ -23,7 +23,7 @@ public class Sink_Kafka {
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
 
 
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8888);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8888);
 
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override
@@ -38,7 +38,7 @@ public class Sink_Kafka {
         tableEnvironment.connect(new Kafka()
                 .topic("first")
                 .startFromLatest()
-                .property(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "hadoop102:9092")
+                .property(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "zx101:9092")
                 .version("universal"))
                 .withFormat(new Json())
 //                .withFormat(new Json())

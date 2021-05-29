@@ -15,7 +15,7 @@ import scala.collection.mutable
 object Deduplicate {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102", 1589)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101", 1589)
     socketDS.flatMap(_.split(",")).keyBy(t => t)
       .process(new KeyedProcessFunction[String, String, String] {
         var set = new mutable.HashSet[String]()

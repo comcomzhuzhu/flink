@@ -28,7 +28,7 @@ public class Sink_Redis {
         caseClassDS.print();
 //        redis 连接 config
         FlinkJedisPoolConfig redisConf = new FlinkJedisPoolConfig.Builder()
-                .setHost("hadoop102")
+                .setHost("zx101")
                 .setPort(6379)
                 .build();
 

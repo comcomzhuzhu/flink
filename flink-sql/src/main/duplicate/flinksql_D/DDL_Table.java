@@ -19,7 +19,7 @@ public class DDL_Table {
                 "id String,ts bigint, vc double ,pt AS PROCTIME() )" +
                 "'connector' = 'kafka'," +
                 "'topic' = 'first'," +
-                "'properties.bootstrap.servers' = 'hadoop102:9092'," +
+                "'properties.bootstrap.servers' = 'zx101:9092'," +
                 "'format' = 'csv'");
 
         tableEnvironment.sqlQuery("select * from aa").printSchema();

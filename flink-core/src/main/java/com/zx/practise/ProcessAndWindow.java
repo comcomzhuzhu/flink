@@ -24,7 +24,7 @@ public class ProcessAndWindow {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 7777);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 7777);
         SingleOutputStreamOperator<WaterSensor> caseClassDS = socketTextStream.map(new MapFunction<String, WaterSensor>() {
             @Override
             public WaterSensor map(String value) {

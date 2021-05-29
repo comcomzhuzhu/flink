@@ -12,7 +12,7 @@ object WordCount {
 
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-    val lineDS: DataStream[String] = env.socketTextStream("hadoop102",9999)
+    val lineDS: DataStream[String] = env.socketTextStream("zx101",9999)
     lineDS.flatMap(_.split(" "))
       .map((_,1))
       .keyBy(_._1)

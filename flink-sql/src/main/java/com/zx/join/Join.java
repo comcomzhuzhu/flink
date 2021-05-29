@@ -26,12 +26,12 @@ public class Join {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env);
 
-        SingleOutputStreamOperator<Table2> table2 = env.socketTextStream("hadoop102", 1111)
+        SingleOutputStreamOperator<Table2> table2 = env.socketTextStream("zx101", 1111)
                 .map(line -> {
                     String[] split = line.split(",");
                     return new Table2(split[0], split[1]);
                 });
-        SingleOutputStreamOperator<Table1> table1 = env.socketTextStream("hadoop102", 2222)
+        SingleOutputStreamOperator<Table1> table1 = env.socketTextStream("zx101", 2222)
                 .map(line -> {
                     String[] split = line.split(",");
                     return new Table1(split[0], split[1]);

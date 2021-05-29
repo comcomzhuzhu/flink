@@ -30,7 +30,7 @@ public class Sink_Jdbc {
                         .build(),
                 new JdbcConnectionOptions.JdbcConnectionOptionsBuilder()
         .withDriverName("com.mysql.jdbc.Driver")
-        .withUrl("jdbc://mysql://hadoop102:3306/test?useSSL=false")
+        .withUrl("jdbc://mysql://zx101:3306/test?useSSL=false")
         .withUsername("root")
         .withPassword("123456").build()));
 

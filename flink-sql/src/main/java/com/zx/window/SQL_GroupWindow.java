@@ -14,7 +14,7 @@ public class SQL_GroupWindow {
                 "with (" +
                 "'connector' = 'kafka'," +
                 "'topic' = 'first'," +
-                "'properties.bootstrap.servers' = 'hadoop102:9092'," +
+                "'properties.bootstrap.servers' = 'zx101:9092'," +
                 "'properties.group.id' = 'testGroup'," +
                 "'scan.startup.mode' = 'earliest-offset'," +
                 "'format' = 'csv'" +

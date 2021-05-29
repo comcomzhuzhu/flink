@@ -24,7 +24,7 @@ import java.util.List;
 public class State_OperatorState_1 {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> dss = env.socketTextStream("hadoop102", 1208);
+        DataStreamSource<String> dss = env.socketTextStream("zx101", 1208);
         SingleOutputStreamOperator<SensorReading> dataDS = dss.map((MapFunction<String, SensorReading>) value -> {
             String[] fields = value.split(",");
             return new SensorReading(fields[0], Long.valueOf(fields[1]), Double.valueOf(fields[2]));

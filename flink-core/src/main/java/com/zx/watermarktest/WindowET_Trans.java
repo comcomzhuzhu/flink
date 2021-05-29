@@ -24,7 +24,7 @@ public class WindowET_Trans {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(3);
-        DataStreamSource<String> socketTextStream = env.socketTextStream("hadoop102", 8877);
+        DataStreamSource<String> socketTextStream = env.socketTextStream("zx101", 8877);
 
         SingleOutputStreamOperator<String> withDS = socketTextStream.assignTimestampsAndWatermarks(WatermarkStrategy.<String>forBoundedOutOfOrderness(Duration.ofMillis(2))
                 .withTimestampAssigner(new SerializableTimestampAssigner<String>() {

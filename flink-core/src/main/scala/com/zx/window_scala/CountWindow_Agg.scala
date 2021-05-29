@@ -13,7 +13,7 @@ import org.apache.flink.streaming.api.scala._
 object CountWindow_Agg {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
-    val socketDS: DataStream[String] = env.socketTextStream("hadoop102",8887)
+    val socketDS: DataStream[String] = env.socketTextStream("zx101",8887)
 
     val waterSensorDS: DataStream[WaterSensor] = socketDS.map(line => {
       val strings: Array[String] = line.split(" ")

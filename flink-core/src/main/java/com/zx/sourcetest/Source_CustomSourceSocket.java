@@ -18,7 +18,7 @@ public class Source_CustomSourceSocket {
     private static final Logger logger = LoggerFactory.getLogger(Source_CustomSourceSocket.class);
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        MySource source = new MySource("hadoop102", 9997);
+        MySource source = new MySource("zx101", 9997);
         DataStreamSource<SensorReading> dss = env.addSource(source);
         dss.print();
         logger.info("main"+source.hashCode());
