@@ -173,7 +173,7 @@
 
                             <transformers combine.children="append">
                                 <!-- The service transformer is needed to merge META-INF/services files -->
-                                <!-- connector和format依赖的工厂类打包时会相互覆盖，需要使用ServicesResourceTransformer解决-->
+                                <!--connector和format依赖的工厂类打包时会相互覆盖，需要使用ServicesResourceTransformer解决-->
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                             </transformers>
