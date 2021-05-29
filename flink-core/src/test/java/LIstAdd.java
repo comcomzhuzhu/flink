@@ -4,7 +4,6 @@ import java.util.ArrayList;
  * @ClassName LIstAdd
  * @Description TODO
  * @Author Xing
- * 20 12:52
  * @Version 1.0
  */
 public class LIstAdd {
@@ -19,7 +18,6 @@ public class LIstAdd {
                 arrayList.add(i, k);
                 System.out.println(arrayList);
             }
-
         }
         System.out.println(arrayList);
     }
